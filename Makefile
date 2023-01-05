@@ -6,12 +6,12 @@
 #    By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 10:17:28 by thmeyer           #+#    #+#              #
-#    Updated: 2023/01/05 12:44:36 by thmeyer          ###   ########.fr        #
+#    Updated: 2023/01/05 12:56:40 by thmeyer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap
-HEADER = push_swap.h
+NAME = so_long
+HEADER = so_long.h
 
 CC = cc
 C_FLAGS = -Wall -Wextra -Werror
@@ -46,7 +46,7 @@ $(LIBMLX_A):
 	$(MAKE) -C $(DIR_MLX)
 
 $(DIR_OBJS)%.o: %.c Makefile $(HEADER)
-	$(CC) $(C_FLAGS) -I $(DIR_MLX) -o $@ -c $<
+	$(CC) $(C_FLAGS) -I$(DIR_MLX) -o $@ -c $<
 
 clean:
 	$(MAKE) clean -C $(DIR_LIBFT)
