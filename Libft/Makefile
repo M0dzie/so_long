@@ -6,7 +6,7 @@
 #    By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/07 13:07:05 by thmeyer           #+#    #+#              #
-#    Updated: 2023/01/04 14:25:34 by thmeyer          ###   ########.fr        #
+#    Updated: 2023/01/05 12:43:27 by thmeyer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,9 +69,9 @@ SRCS_BONUS = ft_lstnew.c \
 	ft_lstiter.c \
 	ft_lstmap.c
 
-OBJS = $(SRCS:%.c=objs/%.o)
-OBJS_BONUS = $(SRCS_BONUS:%.c=objs/%.o)
-DIR_OBJS = objs/
+OBJS = $(SRCS:%.c=Objs/%.o)
+OBJS_BONUS = $(SRCS_BONUS:%.c=Objs/%.o)
+DIR_OBJS = Objs/
 
 all: directory $(NAME)
 
@@ -81,7 +81,7 @@ $(NAME): $(OBJS)
 bonus: $(OBJS) $(OBJS_BONUS)
 	$(AR) $(ARFLAGS) $(NAME) $(OBJS) $(OBJS_BONUS)
 
-objs/%.o: %.c Makefile $(DIR_OBJS) $(HEADER)
+Objs/%.o: %.c Makefile $(DIR_OBJS) $(HEADER)
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 clean:

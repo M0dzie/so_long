@@ -6,7 +6,7 @@
 #    By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 10:17:28 by thmeyer           #+#    #+#              #
-#    Updated: 2023/01/05 12:27:10 by thmeyer          ###   ########.fr        #
+#    Updated: 2023/01/05 12:44:36 by thmeyer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,38 +14,48 @@ NAME = push_swap
 HEADER = push_swap.h
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+C_FLAGS = -Wall -Wextra -Werror
+MLX_FLAGS = -framework OpenGL -framework AppKit
 
 RM = rm -rf
 
 SRCS = 
 
-OBJS = $(SRCS:%.c=objs/%.o)
-DIR_OBJS = objs/
-LIBFT = Libft/
-LIBFT_A = Libft/libft.a
+OBJS = $(SRCS:%.c=Objs/%.o)
+
+DIR_OBJS = Objs/
+DIR_LIBFT = Libft/
+DIR_MLX = Minilibx/
+
+LIBFT_A = $(DIR_LIBFT)libft.a
+LIBMLX_A = $(DIR_MLX)libmlx.a
 
 all: directory rsc $(NAME)
 
-$(NAME): $(LIBFT_A) $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_A)
+$(NAME): $(LIBFT_A) $(LIBMLX_A) $(OBJS)
+	$(CC) $(C_FLAGS) $(MLX_FLAGS) -o $(NAME) $(OBJS) $(LIBFT_A) $(LIBMLX_A)
 
 rsc:
-	$(MAKE) -C $(LIBFT)
+	$(MAKE) -C $(DIR_LIBFT)
+	$(MAKE) -C $(DIR_MLX)
 
 $(LIBFT_A):
-	$(MAKE) -C $(LIBFT)
+	$(MAKE) -C $(DIR_LIBFT)
+	
+$(LIBMLX_A):
+	$(MAKE) -C $(DIR_MLX)
 
 $(DIR_OBJS)%.o: %.c Makefile $(HEADER)
-	$(CC) $(CFLAGS) -o $@ -c $<
+	$(CC) $(C_FLAGS) -I $(DIR_MLX) -o $@ -c $<
 
 clean:
-	$(MAKE) clean -C $(LIBFT)
+	$(MAKE) clean -C $(DIR_LIBFT)
+	$(MAKE) clean -C $(DIR_MLX)
 	$(RM) $(OBJS)
 	$(RM) $(DIR_OBJS)
     
 fclean: 
-	$(MAKE) fclean -C $(LIBFT)
+	$(MAKE) fclean -C $(DIR_LIBFT)
 	$(MAKE) clean
 	$(RM) $(NAME)
 
