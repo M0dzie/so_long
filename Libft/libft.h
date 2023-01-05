@@ -15,6 +15,9 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 15
+# endif
 
 typedef struct s_list
 {
@@ -22,6 +25,11 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+char	*gnl_free_join(char *stash, char *buffer);
+char	*gnl_line(char *stash);
+char	*gnl_next(char *stash);
+char	*get_next_line(int fd);
+char	*gnl_read_line(int fd, char *stash);
 char	*ft_itoa(int n);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s1);
