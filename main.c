@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:04:45 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/09 10:12:12 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/09 17:43:13 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,13 @@ void	is_a_map(char *argv)
 {
 	int	i;
 
-	i = 0;
-	// while (argv[i] && argv[i] != '.')
-	// 	i++;
-	// i++;
-	// if (argv[i] == 'b' && argv[i + 1] == 'e' && argv[i + 2] == 'r'
-	// 	&& argv[i + 3] == '\0')
-		return ;
-	while (argv[i])
+	i = -1;
+	while (argv[++i])
 	{
 		if (argv[i] == '.' && argv[i + 1] == 'b' && argv[i + 2] == 'e'
-			&& argv[i + 3] == 'r' && argv[i + 4] == '\0')
+			&& argv[i + 3] == 'r' && argv[i + 4] == '\0'
+			&& ft_isprint(argv[i - 1]))
 			return ;
-		i++;
 	}
 	display_error(7);
 }
