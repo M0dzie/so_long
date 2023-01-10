@@ -6,7 +6,7 @@
 #    By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 10:17:28 by thmeyer           #+#    #+#              #
-#    Updated: 2023/01/10 13:24:30 by thmeyer          ###   ########.fr        #
+#    Updated: 2023/01/10 14:59:02 by thmeyer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ RM = rm -rf
 
 SRCS = main.c
 
-OBJS = $(SRCS:%.c=Objs/%.o)
+OBJS = $(SRCS:%.c=$(DIR_OBJS)%.o)
 
 DIR_OBJS = Objs/
 DIR_LIBFT = Libft/
@@ -40,12 +40,6 @@ $(NAME): $(LIBFTB_A) $(LIBMLX_A) $(OBJS)
 
 rsc:
 	@$(MAKE) -C $(DIR_LIBFT)
-	@$(MAKE) -C $(DIR_MLX)
-
-$(LIBFT_A):
-	@$(MAKE) -C $(DIR_LIBFT)
-	
-$(LIBMLX_A):
 	@$(MAKE) -C $(DIR_MLX)
 
 $(DIR_OBJS)%.o: %.c Makefile $(HEADER)

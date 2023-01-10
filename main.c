@@ -6,11 +6,11 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:04:45 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/09 17:43:13 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/10 17:11:10 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "so_long.h"
+#include "so_long.h"
 #include "Libft/libft.h"
 #include <stdio.h>
 
@@ -30,19 +30,48 @@ void	display_error(int type)
 		ft_putendl_fd("Error\nThe program take only 1 map as parameter.", 2);
 	if (type == 7)
 		ft_putendl_fd("Error\nThe map is not valid.", 2);
+	if (type == 8)
+		ft_putendl_fd("Error\nNo such file or directory.", 2);
 	exit (0);
 }
 
-void	is_a_map(char *argv)
+void	map_size(char *argv)
 {
-	int	i;
+	int		fd;
+	int		size;
+	char	*line;
 
-	i = -1;
-	while (argv[++i])
+	size = 0;
+	fd = open(argv, O_RDONLY);
+	if (fd == -1)
+		display_error(8);
+	line = get_next_line(fd);
+	printf("Maps : \n");
+	while (line)
 	{
-		if (argv[i] == '.' && argv[i + 1] == 'b' && argv[i + 2] == 'e'
-			&& argv[i + 3] == 'r' && argv[i + 4] == '\0'
-			&& ft_isprint(argv[i - 1]))
+		line = get_next_line(fd);
+		printf("%s", line);
+		size++;
+	}
+	printf("\nsize : %d\n", size);
+	// return (size);
+}
+
+void	is_a_valid_map(char *argv)
+{
+	char	*name;
+	int		len;
+
+	name = ft_strrchr(argv, '/');
+	if (!name)
+		name = argv;
+	else
+		name += 1;
+	len = ft_strlen(name);
+	if (len > 4)
+	{
+		name += len - 4;
+		if (ft_strncmp(name, ".ber", 4) == 0)
 			return ;
 	}
 	display_error(7);
@@ -52,6 +81,7 @@ int	main(int argc, char **argv)
 {
 	if (argc != 2)
 		display_error(6);
-	is_a_map(argv[1]);
+	is_a_valid_map(argv[1]);
+	map_size(argv[1]);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/07 13:07:05 by thmeyer           #+#    #+#              #
-#    Updated: 2023/01/10 13:46:46 by thmeyer          ###   ########.fr        #
+#    Updated: 2023/01/10 14:59:21 by thmeyer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,23 +34,19 @@ SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
 	ft_lstiter.c ft_lstmap.c ft_printf.c basic_ft.c \
 	printnbr.c get_next_line.c get_next_line_utils.c 
 
-OBJS = $(SRCS:%.c=Objs/%.o)
-DIR_OBJS = Objs/
+OBJS = $(SRCS:%.c=$(DIR_OBJS)%.o)
+DIR_OBJS = ../Objs/
 
 all: directory $(NAME)
 
 $(NAME): $(OBJS)
 	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
 
-bonus: $(OBJS)
-	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
-
-Objs/%.o: %.c Makefile $(HEADER)
+$(DIR_OBJS)%.o: %.c Makefile $(HEADER)
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 clean:
 	$(RM) $(OBJS)
-	$(RM) $(DIR_OBJS)
 
 fclean: 
 	@$(MAKE) clean
