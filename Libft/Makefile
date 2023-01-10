@@ -6,7 +6,7 @@
 #    By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/07 13:07:05 by thmeyer           #+#    #+#              #
-#    Updated: 2023/01/10 14:59:21 by thmeyer          ###   ########.fr        #
+#    Updated: 2023/01/10 17:35:55 by thmeyer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
 	ft_strmapi.c ft_striteri.c ft_lstnew.c ft_lstadd_front.c \
 	ft_lstsize.c ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c \
 	ft_lstiter.c ft_lstmap.c ft_printf.c basic_ft.c \
-	printnbr.c get_next_line.c get_next_line_utils.c 
+	printnbr.c get_next_line.c get_next_line_utils.c free.c
 
 OBJS = $(SRCS:%.c=$(DIR_OBJS)%.o)
 DIR_OBJS = ../Objs/

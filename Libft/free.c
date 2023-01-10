@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/05 12:58:34 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/10 18:24:09 by thmeyer          ###   ########.fr       */
+/*   Created: 2023/01/10 17:36:08 by thmeyer           #+#    #+#             */
+/*   Updated: 2023/01/10 17:37:43 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
-# include "Libft/libft.h"
-# include "Minilibx/mlx.h"
-# include <fcntl.h>
+#include "libft.h"
 
-int		map_size(char *argv);
+void	free_tab(char **all_arg)
+{
+	int	i;
 
-char	**fill_map(char *argv, int size);
+	i = -1;
+	while (all_arg[++i])
+		free(all_arg[i]);
+	free(all_arg);
+}
 
-size_t	sl_len(char *str);
+void	free_stack(t_list **lst)
+{
+	t_list	*next_lst;
 
-void	display_error(int type);
-void	valid_map(char *argv);
-
-#endif
+	while ((*lst))
+	{
+		next_lst = (*lst)->next;
+		free((*lst));
+		(*lst) = next_lst;
+	}
+	(*lst) = NULL;
+}
