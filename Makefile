@@ -6,9 +6,12 @@
 #    By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 10:17:28 by thmeyer           #+#    #+#              #
-#    Updated: 2023/01/05 13:34:39 by thmeyer          ###   ########.fr        #
+#    Updated: 2023/01/10 13:24:30 by thmeyer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+NOCOLOR= \033[0m
+BGREEN = \033[1;32m
 
 NAME = so_long
 HEADER = so_long.h
@@ -32,36 +35,38 @@ LIBMLX_A = $(DIR_MLX)libmlx.a
 
 all: directory rsc $(NAME)
 
-$(NAME): $(LIBFT_A) $(LIBMLX_A) $(OBJS)
+$(NAME): $(LIBFTB_A) $(LIBMLX_A) $(OBJS)
 	$(CC) $(C_FLAGS) $(MLX_FLAGS) -o $(NAME) $(OBJS) $(LIBFT_A) $(LIBMLX_A)
 
 rsc:
-	$(MAKE) -C $(DIR_LIBFT)
-	$(MAKE) -C $(DIR_MLX)
+	@$(MAKE) -C $(DIR_LIBFT)
+	@$(MAKE) -C $(DIR_MLX)
 
 $(LIBFT_A):
-	$(MAKE) -C $(DIR_LIBFT)
+	@$(MAKE) -C $(DIR_LIBFT)
 	
 $(LIBMLX_A):
-	$(MAKE) -C $(DIR_MLX)
+	@$(MAKE) -C $(DIR_MLX)
 
 $(DIR_OBJS)%.o: %.c Makefile $(HEADER)
-	$(CC) $(C_FLAGS) -I$(DIR_MLX) -o $@ -c $<
+	$(CC) $(C_FLAGS) -o $@ -c $<
 
 clean:
-	$(MAKE) clean -C $(DIR_LIBFT)
-	$(MAKE) clean -C $(DIR_MLX)
+	@$(MAKE) clean -C $(DIR_LIBFT)
+	@$(MAKE) clean -C $(DIR_MLX)
 	$(RM) $(OBJS)
 	$(RM) $(DIR_OBJS)
+	@echo "$(BGREEN)Clean done$(NOCOLOR)"
     
 fclean: 
-	$(MAKE) fclean -C $(DIR_LIBFT)
-	$(MAKE) clean
+	@$(MAKE) fclean -C $(DIR_LIBFT)
+	@$(MAKE) clean
 	$(RM) $(NAME)
+	@echo "$(BGREEN)Fclean done$(NOCOLOR)"
 
 re: 
-	$(MAKE) fclean
-	$(MAKE) all
+	@$(MAKE) fclean
+	@$(MAKE) all
 
 directory:
 	@mkdir -p $(DIR_OBJS)
