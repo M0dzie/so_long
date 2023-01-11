@@ -6,7 +6,7 @@
 #    By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 10:17:28 by thmeyer           #+#    #+#              #
-#    Updated: 2023/01/10 18:06:28 by thmeyer          ###   ########.fr        #
+#    Updated: 2023/01/11 09:44:13 by thmeyer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ MLX_FLAGS = -framework OpenGL -framework AppKit
 RM = rm -rf
 
 SRCS = main.c \
-		sl_utils.c
+		sl_utils.c \
+		check_errors.c
 
 OBJS = $(SRCS:%.c=$(DIR_OBJS)%.o)
 
