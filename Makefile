@@ -6,7 +6,7 @@
 #    By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 10:17:28 by thmeyer           #+#    #+#              #
-#    Updated: 2023/01/11 09:44:13 by thmeyer          ###   ########.fr        #
+#    Updated: 2023/01/11 10:26:21 by thmeyer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,13 +18,12 @@ HEADER = so_long.h
 
 CC = cc
 C_FLAGS = -Wall -Wextra -Werror
+DB_FLAGS = -fsanitize=address
 MLX_FLAGS = -framework OpenGL -framework AppKit
 
 RM = rm -rf
 
-SRCS = main.c \
-		sl_utils.c \
-		check_errors.c
+SRCS = main.c sl_utils.c check_errors.c
 
 OBJS = $(SRCS:%.c=$(DIR_OBJS)%.o)
 
@@ -63,6 +62,9 @@ fclean:
 re: 
 	@$(MAKE) fclean
 	@$(MAKE) all
+
+debug:
+	$(CC) $(DB_FLAGS) $(C_FLAGS) $(MLX_FLAGS) -o $(NAME) $(OBJS) $(LIBFT_A) $(LIBMLX_A)
 
 directory:
 	@mkdir -p $(DIR_OBJS)

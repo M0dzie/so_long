@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 09:43:23 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/11 09:45:17 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/11 11:00:24 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	display_error(int type)
 		ft_putendl_fd("Error\nNo such file or directory.", 2);
 	if (type == 9)
 		ft_putendl_fd("Error\nThe map is empty.", 2);
-	exit (0);
+	exit (1);
 }
 
 int	map_size(char *argv)
@@ -82,7 +82,7 @@ void	valid_map(char *argv)
 	display_error(7);
 }
 
-void	checking_walls(char **map, int size)
+void	check_walls(char **map, int size)
 {
 	int	i;
 	int	len;
@@ -90,9 +90,9 @@ void	checking_walls(char **map, int size)
 	i = 0;
 	if (size > 0)
 	{
-		while (map[size][i])
+		while (map[size - 1][i])
 		{
-			if (map[size][i] != '1')
+			if (map[size - 1][i] != '1')
 				display_error(2);
 			i++;
 		}
@@ -101,10 +101,10 @@ void	checking_walls(char **map, int size)
 	while (size > 1)
 	{
 		len = ft_strlen(map[size]);
-		if (map[size][0] != '1' && map[size][len] != '1')
+		if (map[size - 1][0] != '1' && map[size - 1][len] != '1')
 			display_error(2);
 		size--;
 	}
 	if (size == 1)
-		checking_walls(map, size);
+		check_walls(map, size);
 }
