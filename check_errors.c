@@ -6,33 +6,17 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 09:43:23 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/11 15:12:09 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/11 18:44:39 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	display_error(int type)
+void	back_tracking_error(t_map **map)
 {
-	if (type == 1)
-		ft_putendl_fd("Error\nThe map must be rectangular.", 2);
-	if (type == 2)
-		ft_putendl_fd("Error\nThe map is not surrounded by walls.", 2);
-	if (type == 3)
-		ft_putendl_fd("Error\nNo valid path in the map.", 2);
-	if (type == 4)
-		ft_putendl_fd("Error\nThe map must contain 1 exit and 1 start.", 2);
-	if (type == 5)
-		ft_putendl_fd("Error\nThe map must contain at least 1 collectible.", 2);
-	if (type == 6)
-		ft_putendl_fd("Error\nThe program take only 1 map as parameter.", 2);
-	if (type == 7)
-		ft_putendl_fd("Error\nThe map is not valid.", 2);
-	if (type == 8)
-		ft_putendl_fd("Error\nNo such file or directory.", 2);
-	if (type == 9)
-		ft_putendl_fd("Error\nThe map is empty.", 2);
-	exit (0);
+	if ((*map)->count_c != (*map)->map_cpy->count_c || (*map)->count_e != \
+	(*map)->map_cpy->count_e)
+		display_error(3);
 }
 
 int	map_size(char *argv)
@@ -97,7 +81,7 @@ void	elements_count(t_map **map, int size)
 			{
 				(*map)->count_p++;
 				(*map)->x = i;
-				(*map)->y = size;
+				(*map)->y = size - 1;
 			}
 			else if ((*map)->mapping[size - 1][i] == 'E')
 				(*map)->count_e++;

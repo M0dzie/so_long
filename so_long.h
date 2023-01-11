@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:58:34 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/11 15:19:09 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/11 18:44:49 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,28 +24,27 @@ typedef struct s_map
 	int				count_e;
 	int				x;
 	int				y;
+	struct s_map	*map_cpy;
 	struct s_map	*next;
 }					t_map;
 
-typedef struct s_pos
-{
-	int				pos_x;
-	int				pos_y;
-	struct s_pos	*next;
-}					t_pos;
 
 int		map_size(char *argv);
+
+char	**copy_map(char **mapping, int size);
 
 size_t	sl_len(char *str);
 
 // t_map	*map_last(t_map *map);
 t_map	*map_new(char **map);
 
-void	back_tracking(t_map **map);
+void	back_tracking(t_map **map, int x, int y);
+void	back_tracking_error(t_map **map);
 void	check_walls(char **mapping, int size);
 void	display_error(int type);
 void	elements_count(t_map **map, int size);
 void	fill_map(char *argv, int size, t_map **map);
+void	moove_in_map(t_map **map, int x, int y);
 // void	map_add_back(t_map **map, t_map *new);
 void	valid_map(char *argv);
 
