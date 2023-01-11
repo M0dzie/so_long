@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:59:55 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/11 18:37:45 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/11 18:52:19 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,30 +62,3 @@ t_map	*map_new(char **map)
 	}
 	return (new);
 }
-
-// void	map_add_back(t_map **map, t_map *new)
-// {
-// 	t_map	*last_line;
-
-// 	if (!(*map))
-// 		(*map) = new;
-// 	else
-// 	{
-// 		last_line = map_last((*map));
-// 		last_line->next = new;
-// 	}
-// }
-
-// t_map	*map_last(t_map *map)
-// {
-// 	t_map	*last_line;
-
-// 	if (!map)
-// 		return (0);
-// 	while (map)
-// 	{
-// 		last_line = map;
-// 		map = map->next;
-// 	}
-// 	return (last_line);
-// }

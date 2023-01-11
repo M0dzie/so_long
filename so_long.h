@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:58:34 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/11 18:44:49 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/11 18:52:13 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ char	**copy_map(char **mapping, int size);
 
 size_t	sl_len(char *str);
 
-// t_map	*map_last(t_map *map);
 t_map	*map_new(char **map);
 
 void	back_tracking(t_map **map, int x, int y);
@@ -45,7 +44,6 @@ void	display_error(int type);
 void	elements_count(t_map **map, int size);
 void	fill_map(char *argv, int size, t_map **map);
 void	moove_in_map(t_map **map, int x, int y);
-// void	map_add_back(t_map **map, t_map *new);
 void	valid_map(char *argv);
 
 
