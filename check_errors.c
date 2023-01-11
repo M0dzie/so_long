@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 09:43:23 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/11 11:07:59 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/11 15:12:09 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	display_error(int type)
 		ft_putendl_fd("Error\nNo such file or directory.", 2);
 	if (type == 9)
 		ft_putendl_fd("Error\nThe map is empty.", 2);
-	exit (1);
+	exit (0);
 }
 
 int	map_size(char *argv)
@@ -82,7 +82,35 @@ void	valid_map(char *argv)
 	display_error(7);
 }
 
-void	check_walls(char **map, int size)
+void	elements_count(t_map **map, int size)
+{
+	int	i;
+
+	while (size > 0)
+	{
+		i = -1;
+		while ((*map)->mapping[size - 1][++i])
+		{
+			if ((*map)->mapping[size - 1][i] == 'C')
+				(*map)->count_c++;
+			else if ((*map)->mapping[size - 1][i] == 'P')
+			{
+				(*map)->count_p++;
+				(*map)->x = i;
+				(*map)->y = size;
+			}
+			else if ((*map)->mapping[size - 1][i] == 'E')
+				(*map)->count_e++;
+		}
+		size--;
+	}
+	if ((*map)->count_p != 1 || (*map)->count_e != 1)
+		display_error(4);
+	if ((*map)->count_c < 1)
+		display_error(5);
+}
+
+void	check_walls(char **mapping, int size)
 {
 	int	i;
 	int	len;
@@ -90,9 +118,9 @@ void	check_walls(char **map, int size)
 	i = 0;
 	if (size > 0)
 	{
-		while (map[size - 1][i])
+		while (mapping[size - 1][i])
 		{
-			if (map[size - 1][i] != '1')
+			if (mapping[size - 1][i] != '1')
 				display_error(2);
 			i++;
 		}
@@ -100,11 +128,11 @@ void	check_walls(char **map, int size)
 	}
 	while (size > 1)
 	{
-		len = ft_strlen(map[size]);
-		if (map[size - 1][0] != '1' || map[size - 1][len - 1] != '1')
+		len = ft_strlen(mapping[size]);
+		if (mapping[size - 1][0] != '1' || mapping[size - 1][len - 1] != '1')
 			display_error(2);
 		size--;
 	}
 	if (size == 1)
-		check_walls(map, size);
+		check_walls(mapping, size);
 }
