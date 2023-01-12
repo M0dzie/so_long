@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 12:02:30 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/12 10:11:11 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/12 10:32:50 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,11 @@ void	move_in_map(t_map **map, int x, int y)
 	if ((*map)->map_cpy->mapping[y][x] == 'E')
 		(*map)->map_cpy->count_e++;
 	(*map)->map_cpy->mapping[y][x] = '1';
+}
+
+void	back_tracking_error(t_map **map)
+{
+	if ((*map)->count_c != (*map)->map_cpy->count_c || (*map)->count_e != \
+	(*map)->map_cpy->count_e)
+		display_error(3);
 }

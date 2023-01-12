@@ -6,18 +6,11 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 09:43:23 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/11 18:44:39 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/12 10:32:45 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	back_tracking_error(t_map **map)
-{
-	if ((*map)->count_c != (*map)->map_cpy->count_c || (*map)->count_e != \
-	(*map)->map_cpy->count_e)
-		display_error(3);
-}
 
 int	map_size(char *argv)
 {

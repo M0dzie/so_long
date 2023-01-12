@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:58:34 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/12 09:56:20 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/12 13:21:45 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,22 @@ typedef struct s_map
 	int				count_c;
 	int				count_p;
 	int				count_e;
+	int				width;
+	int				length;
 	int				x;
 	int				y;
 	struct s_map	*map_cpy;
 	struct s_map	*next;
 }					t_map;
 
+typedef struct s_data
+{
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+}				t_data;
 
 int		map_size(char *argv);
 
@@ -43,6 +53,7 @@ void	check_walls(char **mapping, int size);
 void	display_error(int type);
 void	elements_count(t_map **map, int size);
 void	fill_map(char *argv, int size, t_map **map);
+void	init_mlx(t_map **map);
 void	move_in_map(t_map **map, int x, int y);
 void	valid_map(char *argv);
 
