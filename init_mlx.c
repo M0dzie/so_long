@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 10:37:41 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/13 16:46:28 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/13 18:47:05 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 void	init_mlx(t_map **map)
 {
 	t_init	mlx;
- 
+
 	print_map((*map)->mapping, "Real Map");
 	mlx.mlx_ptr = mlx_init();
 	print_map((*map)->mapping, "MAP DE MERDE");
@@ -47,7 +47,7 @@ void	init_mlx(t_map **map)
 	(*map)->width * 32, "Random Forest");
 	fill_background(map, &mlx);
 	put_img_to_map(map, &mlx);
-	// put_exit_and_start(map, &mlx);
+	put_exit_and_start(map, &mlx);
 	mlx_loop(mlx.mlx_ptr);
 }
 
@@ -63,10 +63,10 @@ void	put_img_to_map(t_map **map, t_init *mlx)
 	&mlx->img_width, &mlx->img_height);
 	ball.img = mlx_xpm_file_to_image(mlx->mlx_ptr, "Images/ball.xpm", \
 	&mlx->img_width, &mlx->img_height);
-	while ((*map)->mapping[++i] != '\0')
+	while ((*map)->mapping[++i])
 	{
 		j = -1;
-		while ((*map)->mapping[i][++j] != '\0')
+		while ((*map)->mapping[i][++j])
 		{
 			if ((*map)->mapping[i][j] == '0')
 				mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_win, \
@@ -90,10 +90,10 @@ void	fill_background(t_map **map, t_init *mlx)
 	"Images/background.xpm", &mlx->img_width, &mlx->img_height);
 	tree.img = mlx_xpm_file_to_image(mlx->mlx_ptr, "Images/tree2.xpm", \
 	&mlx->img_width, &mlx->img_height);
-	while (++i < (*map)->width)
+	while ((*map)->mapping[++i])
 	{
 		j = -1;
-		while (++j < (*map)->length)
+		while ((*map)->mapping[i][++j])
 		{
 			mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_win, \
 			background.img, j * 32, i * 32);
@@ -102,9 +102,6 @@ void	fill_background(t_map **map, t_init *mlx)
 				tree.img, j * 32, i * 32);
 		}
 	}
-	mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_win, \
-	tree.img, 5 * 32, 0 * 32);
-	print_map((*map)->mapping, "MAP DE MERDE");
 }
 
 void	put_exit_and_start(t_map **map, t_init *mlx)
@@ -115,14 +112,14 @@ void	put_exit_and_start(t_map **map, t_init *mlx)
 	t_data	start;
 
 	i = -1;
-	exit.img = mlx_xpm_file_to_image(mlx->mlx_ptr, "Images/tree2.xpm", \
+	exit.img = mlx_xpm_file_to_image(mlx->mlx_ptr, "Images/home.xpm", \
 	&mlx->img_width, &mlx->img_height);
-	start.img = mlx_xpm_file_to_image(mlx->mlx_ptr, "Images/tree3.xpm", \
+	start.img = mlx_xpm_file_to_image(mlx->mlx_ptr, "Images/start.xpm", \
 	&mlx->img_width, &mlx->img_height);
-	while (++i < (*map)->width)
+	while ((*map)->mapping[++i])
 	{
 		j = -1;
-		while (++j < (*map)->length)
+		while ((*map)->mapping[i][++j])
 		{
 			if ((*map)->mapping[i][j] == 'P')
 				mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_win, \

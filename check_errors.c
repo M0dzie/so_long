@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 09:43:23 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/13 16:30:52 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/13 18:48:24 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	map_size(char *argv)
 	}
 	if (size < 3)
 		display_error(3);
-	return (size);
+	return (close(fd), size);
 }
 
 void	valid_map(char *argv)
