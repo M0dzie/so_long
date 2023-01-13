@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 09:43:23 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/13 18:48:24 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/13 19:24:34 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,23 +63,22 @@ void	elements_count(t_map **map, int size)
 {
 	int	i;
 
-	while (size > 0)
+	while (--size > 0)
 	{
 		i = -1;
-		while ((*map)->mapping[size - 1][++i])
+		while ((*map)->mapping[size][++i])
 		{
-			if ((*map)->mapping[size - 1][i] == 'C')
+			if ((*map)->mapping[size][i] == 'C')
 				(*map)->count_c++;
-			else if ((*map)->mapping[size - 1][i] == 'P')
+			else if ((*map)->mapping[size][i] == 'P')
 			{
 				(*map)->count_p++;
 				(*map)->x = i;
-				(*map)->y = size - 1;
+				(*map)->y = size;
 			}
-			else if ((*map)->mapping[size - 1][i] == 'E')
+			else if ((*map)->mapping[size][i] == 'E')
 				(*map)->count_e++;
 		}
-		size--;
 	}
 	if ((*map)->count_p != 1 || (*map)->count_e != 1)
 		display_error(4);
@@ -92,17 +91,17 @@ void	check_walls(char **mapping, int size)
 	int	i;
 	int	len;
 
-	i = 0;
+	i = -1;
 	if (size > 0)
 	{
-		while (mapping[size - 1][i])
+		while (mapping[size - 1][++i])
 		{
 			if (mapping[size - 1][i] != '1')
 				display_error(2);
-			i++;
 		}
 		size--;
 	}
+	i = -1;
 	while (size > 1)
 	{
 		len = ft_strlen(mapping[size]);

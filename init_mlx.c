@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minilibx.c                                         :+:      :+:    :+:   */
+/*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 10:37:41 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/13 18:47:05 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/13 19:08:03 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,23 @@
 // 	*(unsigned int*)dst = color;
 // }
 
-void	init_mlx(t_map **map)
+void	init_mlx(t_map **map, t_init *mlx)
 {
-	t_init	mlx;
-
 	print_map((*map)->mapping, "Real Map");
-	mlx.mlx_ptr = mlx_init();
+	mlx->mlx_ptr = mlx_init();
+	if (!mlx->mlx_ptr)
+		return ;
 	print_map((*map)->mapping, "MAP DE MERDE");
-	mlx.mlx_win = mlx_new_window(mlx.mlx_ptr, (*map)->length * 32, \
-	(*map)->width * 32, "Random Forest");
-	fill_background(map, &mlx);
-	put_img_to_map(map, &mlx);
-	put_exit_and_start(map, &mlx);
-	mlx_loop(mlx.mlx_ptr);
+	mlx->mlx_win = mlx_new_window(mlx->mlx_ptr, (*map)->length * 32, \
+	(*map)->width * 32, "Walking in the Forest");
+	if (!mlx->mlx_ptr)
+		return ;
+	fill_background(map, mlx);
+	put_img_to_map(map, mlx);
+	put_exit_and_start(map, mlx);
+	mlx_loop(mlx->mlx_ptr);
+	mlx_destroy_window(mlx->mlx_ptr, mlx->mlx_win);
+	free(mlx->mlx_ptr);
 }
 
 void	put_img_to_map(t_map **map, t_init *mlx)

@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:58:34 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/13 16:28:29 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/13 19:05:59 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	display_error(int type);
 void	elements_count(t_map **map, int size);
 void	fill_background(t_map **map, t_init *mlx);
 void	fill_map(char *argv, int size, t_map **map);
-void	init_mlx(t_map **map);
+void	init_mlx(t_map **map, t_init *mlx);
 void	move_in_map(t_map **map, int x, int y);
 void	put_exit_and_start(t_map **map, t_init *mlx);
 void	put_img_to_map(t_map **map, t_init *mlx);
