@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 18:39:21 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/11 18:45:03 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/13 16:36:07 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ void	fill_map(char *argv, int size, t_map **map)
 		i++;
 	}
 	check_walls(mapping, size);
-	(*map) = map_new(mapping);
+	*map = map_new(mapping);
 	(*map)->map_cpy = map_new(copy_map(mapping, size));
-	elements_count(&(*map), size);
-	back_tracking(&(*map), (*map)->x, (*map)->y);
-	back_tracking_error(&(*map));
+	elements_count(map, size);
+	back_tracking(map, (*map)->x, (*map)->y);
+	back_tracking_error(map);
 	free(line);
 }

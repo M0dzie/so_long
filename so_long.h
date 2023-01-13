@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:58:34 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/12 13:21:45 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/13 16:28:29 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,14 @@ typedef struct s_data
 	int			endian;
 }				t_data;
 
+typedef struct s_init
+{
+	void		*mlx_ptr;
+	void		*mlx_win;
+	int			img_width;
+	int			img_height;
+}				t_init;
+
 int		map_size(char *argv);
 
 char	**copy_map(char **mapping, int size);
@@ -52,12 +60,15 @@ void	back_tracking_error(t_map **map);
 void	check_walls(char **mapping, int size);
 void	display_error(int type);
 void	elements_count(t_map **map, int size);
+void	fill_background(t_map **map, t_init *mlx);
 void	fill_map(char *argv, int size, t_map **map);
 void	init_mlx(t_map **map);
 void	move_in_map(t_map **map, int x, int y);
+void	put_exit_and_start(t_map **map, t_init *mlx);
+void	put_img_to_map(t_map **map, t_init *mlx);
 void	valid_map(char *argv);
 
 
-void	print_map(char **mapping);
+void	print_map(char **mapping, char *type);
 
 #endif

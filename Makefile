@@ -6,7 +6,7 @@
 #    By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 10:17:28 by thmeyer           #+#    #+#              #
-#    Updated: 2023/01/12 15:26:57 by thmeyer          ###   ########.fr        #
+#    Updated: 2023/01/13 16:54:17 by thmeyer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ HEADER = so_long.h
 CC = cc
 C_FLAGS = -Wall -Wextra -Werror
 DB_FLAGS = -fsanitize=address
-MLX_FLAGS = -framework OpenGL -framework AppKit
+MLX_FLAGS = -L$(DIR_MLX) -framework OpenGL -framework AppKit
 
 RM = rm -rf
 
@@ -45,7 +45,7 @@ rsc:
 	@$(MAKE) -C $(DIR_MLX)
 
 $(DIR_OBJS)%.o: %.c Makefile $(HEADER)
-	$(CC) $(C_FLAGS) -o $@ -c $<
+	$(CC) $(C_FLAGS) -I$(DIR_MLX) -o $@ -c $<
 
 clean:
 	@$(MAKE) clean -C $(DIR_LIBFT)
