@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   back_tracking.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: thmeyer <marvin42@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 12:02:30 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/13 16:36:47 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/14 13:55:25 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void	back_tracking(t_map **map, int x, int y)
 {
-	int	count;
-
-	count = 0;
 	// ft_printf("\nx : %d et y : %d\n", x, y);
 	// print_map((*map)->map_cpy->mapping, "Map Copy");
 	move_in_map(map, x, y);

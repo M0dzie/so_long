@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: thmeyer <marvin42@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:58:34 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/13 19:05:59 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/14 15:06:45 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_data
 {
 	void		*img;
 	char		*addr;
-	int			bits_per_pixel;
+	int			bpp;
 	int			line_length;
 	int			endian;
 }				t_data;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: thmeyer <marvin42@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:04:45 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/13 19:26:22 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/14 14:39:23 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,3 +44,17 @@ int	main(int argc, char **argv)
 	init_mlx(&map, &mlx);
 	return (0);
 }
+
+// int	main(int argc, char **argv)
+// {
+// 	t_long	solong;
+
+// 	initvar(&solong);
+// 	if (argc == 1)
+// 		showerror(&solong, "Missing map (./so_long maps/intra.ber)");
+// 	if (argc > 2)
+// 		showerror(&solong, "Too many arguments");
+// 	parsing(&solong, argv[1]);
+// 	display(&solong);
+// 	return (0);
+// }
