@@ -6,39 +6,39 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 12:02:30 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/16 09:51:43 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/16 10:48:02 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	back_tracking(t_map **map, int x, int y)
+void	back_tracking(t_long **sl, int x, int y)
 {
 	// ft_printf("\nx : %d et y : %d\n", x, y);
-	// print_map((*map)->map_cpy->mapping, "Map Copy");
-	move_in_map(map, x, y);
-	if ((*map)->map_cpy->mapping[y - 1][x] != '1')
-		back_tracking(map, x, y - 1);
-	if ((*map)->map_cpy->mapping[y][x + 1] != '1')
-		back_tracking(map, x + 1, y);
-	if ((*map)->map_cpy->mapping[y + 1][x] != '1')
-		back_tracking(map, x, y + 1);
-	if ((*map)->map_cpy->mapping[y][x - 1] != '1')
-		back_tracking(map, x - 1, y);
+	// print_map((*sl)->map_cpy->mapping, "Map Copy");
+	move_in_map(sl, x, y);
+	if ((*sl)->map_cpy->mapping[y - 1][x] != '1')
+		back_tracking(sl, x, y - 1);
+	if ((*sl)->map_cpy->mapping[y][x + 1] != '1')
+		back_tracking(sl, x + 1, y);
+	if ((*sl)->map_cpy->mapping[y + 1][x] != '1')
+		back_tracking(sl, x, y + 1);
+	if ((*sl)->map_cpy->mapping[y][x - 1] != '1')
+		back_tracking(sl, x - 1, y);
 }
 
-void	move_in_map(t_map **map, int x, int y)
+void	move_in_map(t_long **sl, int x, int y)
 {
-	if ((*map)->map_cpy->mapping[y][x] == 'C')
-		(*map)->map_cpy->count_c++;
-	if ((*map)->map_cpy->mapping[y][x] == 'E')
-		(*map)->map_cpy->count_e++;
-	(*map)->map_cpy->mapping[y][x] = '1';
+	if ((*sl)->map_cpy->mapping[y][x] == 'C')
+		(*sl)->map_cpy->count_c++;
+	if ((*sl)->map_cpy->mapping[y][x] == 'E')
+		(*sl)->map_cpy->count_e++;
+	(*sl)->map_cpy->mapping[y][x] = '1';
 }
 
-void	back_tracking_error(t_map **map)
+void	back_tracking_error(t_long **sl)
 {
-	if (((*map)->count_c != (*map)->map_cpy->count_c) || ((*map)->count_e != \
-	(*map)->map_cpy->count_e))
+	if (((*sl)->count_c != (*sl)->map_cpy->count_c) || ((*sl)->count_e != \
+	(*sl)->map_cpy->count_e))
 		display_error(3);
 }

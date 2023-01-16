@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 09:43:23 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/16 09:37:55 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/16 11:14:00 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,30 +59,30 @@ void	valid_map(char *argv)
 	display_error(7);
 }
 
-void	elements_count(t_map **map, int size)
+void	elements_count(t_long **sl, int size)
 {
 	int	i;
 
 	while (--size > 0)
 	{
 		i = -1;
-		while ((*map)->mapping[size][++i])
+		while ((*sl)->mapping[size][++i])
 		{
-			if ((*map)->mapping[size][i] == 'C')
-				(*map)->count_c++;
-			else if ((*map)->mapping[size][i] == 'P')
+			if ((*sl)->mapping[size][i] == 'C')
+				(*sl)->count_c++;
+			else if ((*sl)->mapping[size][i] == 'P')
 			{
-				(*map)->count_p++;
-				(*map)->x = i;
-				(*map)->y = size;
+				(*sl)->count_p++;
+				(*sl)->x = i;
+				(*sl)->y = size;
 			}
-			else if ((*map)->mapping[size][i] == 'E')
-				(*map)->count_e++;
+			else if ((*sl)->mapping[size][i] == 'E')
+				(*sl)->count_e++;
 		}
 	}
-	if ((*map)->count_p != 1 || (*map)->count_e != 1)
+	if ((*sl)->count_p != 1 || (*sl)->count_e != 1)
 		display_error(4);
-	if ((*map)->count_c < 1)
+	if ((*sl)->count_c < 1)
 		display_error(5);
 }
 

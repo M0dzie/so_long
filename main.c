@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thmeyer <marvin42@42.fr>                   +#+  +:+       +#+        */
+/*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:04:45 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/14 14:39:23 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/16 10:56:17 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,32 +29,17 @@ void	print_map(char **mapping, char *type)
 int	main(int argc, char **argv)
 {
 	int		size;
-	t_map	*map;
-	t_init	mlx;
+	t_long	sl;
 
 	if (argc != 2)
 		display_error(6);
 	valid_map(argv[1]);
 	size = map_size(argv[1]);
-	fill_map(argv[1], size, &map);
+	fill_map(argv[1], size, &sl);
 	//check_global;
-	map->width = size;
-	map->length = ft_strlen(map->mapping[0]);
-	ft_printf("x : %d et y : %d\n", map->length, map->width);
-	init_mlx(&map, &mlx);
-	return (0);
+	sl.width = size;
+	sl.length = ft_strlen(sl.mapping[0]);
+	ft_printf("x : %d et y : %d\n", sl.length, sl.width);
+	init_mlx(&sl);
+	return (free_tab(sl.mapping), 0);
 }
-
-// int	main(int argc, char **argv)
-// {
-// 	t_long	solong;
-
-// 	initvar(&solong);
-// 	if (argc == 1)
-// 		showerror(&solong, "Missing map (./so_long maps/intra.ber)");
-// 	if (argc > 2)
-// 		showerror(&solong, "Too many arguments");
-// 	parsing(&solong, argv[1]);
-// 	display(&solong);
-// 	return (0);
-// }

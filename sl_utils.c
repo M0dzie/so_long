@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:59:55 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/16 09:39:10 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/16 10:35:49 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ size_t	sl_len(char *str)
 	return (i);
 }
 
-t_map	*map_new(char **map)
+t_long	*map_new(char **map)
 {
-	t_map	*new;
+	t_long	*new;
 
-	new = malloc(sizeof(t_map));
+	new = malloc(sizeof(t_long));
 	if (!new)
 		exit(0);
 	if (new)
