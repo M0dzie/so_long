@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 18:39:21 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/16 11:54:20 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/16 17:38:07 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,9 @@ void	fill_map(char *argv, int size, t_long *sl)
 	check_walls(sl->map, size);
 	sl = map_new(sl->map);
 	sl->map_cpy = map_new(copy_map(sl->map, size));
-	elements_count(&sl, size);
-	back_tracking(&sl, sl->x, sl->y);
-	back_tracking_error(&sl);
+	elements_count(sl, size);
+	back_tracking(sl, sl->x, sl->y);
+	back_tracking_error(sl);
 	close (fd);
+	ft_printf("x : %d et y : %d\n", sl->x, sl->y);
 }

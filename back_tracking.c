@@ -6,39 +6,39 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 12:02:30 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/16 16:56:49 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/16 17:19:09 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	back_tracking(t_long **sl, int x, int y)
+void	back_tracking(t_long *sl, int x, int y)
 {
 	// ft_printf("\nx : %d et y : %d\n", x, y);
-	// print_map((*sl)->map_cpy->map, "Map Copy");
+	// print_map(sl->map_cpy->map, "Map Copy");
 	move_in_map(sl, x, y);
-	if ((*sl)->map_cpy->map[y - 1][x] != '1')
+	if (sl->map_cpy->map[y - 1][x] != '1')
 		back_tracking(sl, x, y - 1);
-	if ((*sl)->map_cpy->map[y][x + 1] != '1')
+	if (sl->map_cpy->map[y][x + 1] != '1')
 		back_tracking(sl, x + 1, y);
-	if ((*sl)->map_cpy->map[y + 1][x] != '1')
+	if (sl->map_cpy->map[y + 1][x] != '1')
 		back_tracking(sl, x, y + 1);
-	if ((*sl)->map_cpy->map[y][x - 1] != '1')
+	if (sl->map_cpy->map[y][x - 1] != '1')
 		back_tracking(sl, x - 1, y);
 }
 
-void	move_in_map(t_long **sl, int x, int y)
+void	move_in_map(t_long *sl, int x, int y)
 {
-	if ((*sl)->map_cpy->map[y][x] == 'C')
-		(*sl)->map_cpy->count_c++;
-	if ((*sl)->map_cpy->map[y][x] == 'E')
-		(*sl)->map_cpy->count_e++;
-	(*sl)->map_cpy->map[y][x] = '1';
+	if (sl->map_cpy->map[y][x] == 'C')
+		sl->map_cpy->count_c++;
+	if (sl->map_cpy->map[y][x] == 'E')
+		sl->map_cpy->count_e++;
+	sl->map_cpy->map[y][x] = '1';
 }
 
-void	back_tracking_error(t_long **sl)
+void	back_tracking_error(t_long *sl)
 {
-	if (((*sl)->count_c != (*sl)->map_cpy->count_c) || ((*sl)->count_e != \
-	(*sl)->map_cpy->count_e))
+	if ((sl->count_c != sl->map_cpy->count_c) || (sl->count_e != \
+	sl->map_cpy->count_e))
 		display_error(3);
 }

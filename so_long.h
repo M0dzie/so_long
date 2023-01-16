@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:58:34 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/16 16:53:15 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/16 17:23:07 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ typedef struct s_long
 	struct s_long	*next;
 }					t_long;
 
-int		check_keycode(int keycode, t_long **sl);
-int		exit_win(t_long **sl);
+int		check_keycode(int keycode, t_long *sl);
+int		exit_win(t_long *sl);
 int		map_size(char *argv);
-int		move_char(int keycode, t_long **sl);
+int		move_char(int keycode, t_long *sl);
 
 char	**copy_map(char **map, int size);
 
@@ -72,18 +72,18 @@ size_t	sl_len(char *str);
 
 t_long	*map_new(char **map);
 
-void	back_tracking(t_long **sl, int x, int y);
-void	back_tracking_error(t_long **sl);
+void	back_tracking(t_long *sl, int x, int y);
+void	back_tracking_error(t_long *sl);
 void	check_walls(char **map, int size);
 void	display_error(int type);
-void	elements_count(t_long **sl, int size);
-void	fill_background(t_long **sl);
+void	elements_count(t_long *sl, int size);
+void	fill_background(t_long *sl);
 void	fill_map(char *argv, int size, t_long *sl);
 void	init_mlx(t_long *sl);
-void	init_move(t_long **sl);
-void	move_in_map(t_long **sl, int x, int y);
-void	put_exit_and_start(t_long **sl);
-void	put_img_to_map(t_long **sl);
+void	init_move(t_long *sl);
+void	move_in_map(t_long *sl, int x, int y);
+void	put_exit_and_start(t_long *sl);
+void	put_img_to_map(t_long *sl);
 void	valid_map(char *argv);
 
 void	print_map(char **map, char *type);
