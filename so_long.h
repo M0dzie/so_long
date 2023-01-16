@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thmeyer <marvin42@42.fr>                   +#+  +:+       +#+        */
+/*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:58:34 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/14 15:06:45 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/16 10:01:51 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,29 @@
 # include "Libft/libft.h"
 # include "Minilibx/mlx.h"
 # include <fcntl.h>
+
+// typedef struct s_long
+// {
+// 	char			**mapping;
+// 	int				count_c;
+// 	int				count_p;
+// 	int				count_e;
+// 	int				width;
+// 	int				length;
+// 	int				x;
+// 	int				y;
+// 	void			*img;
+// 	char			*addr;
+// 	int				bpp;
+// 	int				line_length;
+// 	int				endian;
+// 	void			*mlx_ptr;
+// 	void			*mlx_win;
+// 	int				img_width;
+// 	int				img_height;
+// 	struct s_long	*map_cpy;
+// 	struct s_long	*next;
+// }					t_long;
 
 typedef struct s_map
 {
