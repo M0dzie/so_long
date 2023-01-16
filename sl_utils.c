@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:59:55 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/16 10:35:49 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/16 14:27:37 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	display_error(int type)
 		ft_putendl_fd("Error\nNo such file or directory.", 2);
 	if (type == 9)
 		ft_putendl_fd("Error\nThe map is empty.", 2);
-	// free_tab();
 	exit (0);
 }
 
@@ -55,10 +54,11 @@ t_long	*map_new(char **map)
 		exit(0);
 	if (new)
 	{
-		new->mapping = map;
+		new->map = map;
 		new->count_c = 0;
 		new->count_p = 0;
 		new->count_e = 0;
+		new->count_m = 0;
 		new->next = 0;
 	}
 	return (new);

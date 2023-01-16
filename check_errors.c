@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 09:43:23 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/16 11:14:00 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/16 11:54:20 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,17 +66,17 @@ void	elements_count(t_long **sl, int size)
 	while (--size > 0)
 	{
 		i = -1;
-		while ((*sl)->mapping[size][++i])
+		while ((*sl)->map[size][++i])
 		{
-			if ((*sl)->mapping[size][i] == 'C')
+			if ((*sl)->map[size][i] == 'C')
 				(*sl)->count_c++;
-			else if ((*sl)->mapping[size][i] == 'P')
+			else if ((*sl)->map[size][i] == 'P')
 			{
 				(*sl)->count_p++;
 				(*sl)->x = i;
 				(*sl)->y = size;
 			}
-			else if ((*sl)->mapping[size][i] == 'E')
+			else if ((*sl)->map[size][i] == 'E')
 				(*sl)->count_e++;
 		}
 	}
@@ -86,7 +86,7 @@ void	elements_count(t_long **sl, int size)
 		display_error(5);
 }
 
-void	check_walls(char **mapping, int size)
+void	check_walls(char **map, int size)
 {
 	int	i;
 	int	len;
@@ -94,9 +94,9 @@ void	check_walls(char **mapping, int size)
 	i = -1;
 	if (size > 0)
 	{
-		while (mapping[size - 1][++i])
+		while (map[size - 1][++i])
 		{
-			if (mapping[size - 1][i] != '1')
+			if (map[size - 1][i] != '1')
 				display_error(2);
 		}
 		size--;
@@ -104,11 +104,11 @@ void	check_walls(char **mapping, int size)
 	i = -1;
 	while (size > 1)
 	{
-		len = ft_strlen(mapping[size]);
-		if (mapping[size - 1][0] != '1' || mapping[size - 1][len - 1] != '1')
+		len = ft_strlen(map[size]);
+		if (map[size - 1][0] != '1' || map[size - 1][len - 1] != '1')
 			display_error(2);
 		size--;
 	}
 	if (size == 1)
-		check_walls(mapping, size);
+		check_walls(map, size);
 }

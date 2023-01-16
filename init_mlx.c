@@ -6,66 +6,47 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 10:37:41 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/16 11:12:16 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/16 16:55:33 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// int	mlx_clear_window(void *mlx_ptr, void *win_ptr)
-// {	
-// }
-
-// int	mlx_destroy_window(void *mlx_ptr, void *win_ptr)
-// {
-// }
-
-// int	mlx_pixel_put(void *mlx_ptr, void *win_ptr, int x, int y, int color)
-// {
-// }
-
-// int	mlx_string_put(void *mlx_ptr, void *win_ptr, int x, int y, int color, char *string)
-// {
-// }
-
 void	init_mlx(t_long *sl)
 {
-	print_map(sl->mapping, "Real Map");
 	sl->mlx_ptr = mlx_init();
-	print_map(sl->mapping, "MAP DE MERDE");
 	sl->mlx_win = mlx_new_window(sl->mlx_ptr, sl->length * 32, \
 	sl->width * 32, "42 so_long thmeyer");
 	fill_background(&sl);
 	put_img_to_map(&sl);
 	put_exit_and_start(&sl);
+	init_move(&sl);
+	ft_printf("x : %d et y : %d\n", sl->x, sl->y);
+	mlx_hook(sl->mlx_win, 2, 1l << 0, check_keycode, &sl);
 	mlx_loop(sl->mlx_ptr);
-	mlx_destroy_window(sl->mlx_ptr, sl->mlx_win);
-	free(sl->mlx_ptr);
 }
 
 void	put_img_to_map(t_long **sl)
 {
 	int		i;
 	int		j;
-	t_long	bush;
-	t_long	ball;
 
 	i = -1;
-	bush.img = mlx_xpm_file_to_image((*sl)->mlx_ptr, "Images/bush.xpm", \
+	(*sl)->bush.img = mlx_xpm_file_to_image((*sl)->mlx_ptr, "Images/bush.xpm", \
 	&(*sl)->img_width, &(*sl)->img_height);
-	ball.img = mlx_xpm_file_to_image((*sl)->mlx_ptr, "Images/ball.xpm", \
-	&(*sl)->img_width, &(*sl)->img_height);
-	while ((*sl)->mapping[++i])
+	(*sl)->collec.img = mlx_xpm_file_to_image((*sl)->mlx_ptr, \
+	"Images/ball.xpm", &(*sl)->img_width, &(*sl)->img_height);
+	while ((*sl)->map[++i])
 	{
 		j = -1;
-		while ((*sl)->mapping[i][++j])
+		while ((*sl)->map[i][++j])
 		{
-			if ((*sl)->mapping[i][j] == '0')
+			if ((*sl)->map[i][j] == '0')
 				mlx_put_image_to_window((*sl)->mlx_ptr, (*sl)->mlx_win, \
-				bush.img, j * 32, i * 32);
-			else if ((*sl)->mapping[i][j] == 'C')
+				(*sl)->bush.img, j * 32, i * 32);
+			else if ((*sl)->map[i][j] == 'C')
 				mlx_put_image_to_window((*sl)->mlx_ptr, (*sl)->mlx_win, \
-				ball.img, j * 32, i * 32);
+				(*sl)->collec.img, j * 32, i * 32);
 		}
 	}
 }
@@ -74,24 +55,22 @@ void	fill_background(t_long **sl)
 {
 	int		i;
 	int		j;
-	t_long	tree;
-	t_long	background;
 
 	i = -1;
-	background.img = mlx_xpm_file_to_image((*sl)->mlx_ptr, \
+	(*sl)->background.img = mlx_xpm_file_to_image((*sl)->mlx_ptr, \
 	"Images/background.xpm", &(*sl)->img_width, &(*sl)->img_height);
-	tree.img = mlx_xpm_file_to_image((*sl)->mlx_ptr, "Images/tree2.xpm", \
+	(*sl)->tree.img = mlx_xpm_file_to_image((*sl)->mlx_ptr, "Images/tree2.xpm", \
 	&(*sl)->img_width, &(*sl)->img_height);
-	while ((*sl)->mapping[++i])
+	while ((*sl)->map[++i])
 	{
 		j = -1;
-		while ((*sl)->mapping[i][++j])
+		while ((*sl)->map[i][++j])
 		{
 			mlx_put_image_to_window((*sl)->mlx_ptr, (*sl)->mlx_win, \
-			background.img, j * 32, i * 32);
-			if ((*sl)->mapping[i][j] == '1')
+			(*sl)->background.img, j * 32, i * 32);
+			if ((*sl)->map[i][j] == '1')
 				mlx_put_image_to_window((*sl)->mlx_ptr, (*sl)->mlx_win, \
-				tree.img, j * 32, i * 32);
+				(*sl)->tree.img, j * 32, i * 32);
 		}
 	}
 }
@@ -100,25 +79,43 @@ void	put_exit_and_start(t_long **sl)
 {
 	int		i;
 	int		j;
-	t_long	exit;
-	t_long	start;
 
 	i = -1;
-	exit.img = mlx_xpm_file_to_image((*sl)->mlx_ptr, "Images/home.xpm", \
+	(*sl)->exit.img = mlx_xpm_file_to_image((*sl)->mlx_ptr, "Images/bush.xpm", \
 	&(*sl)->img_width, &(*sl)->img_height);
-	start.img = mlx_xpm_file_to_image((*sl)->mlx_ptr, "Images/start.xpm", \
-	&(*sl)->img_width, &(*sl)->img_height);
-	while ((*sl)->mapping[++i])
+	(*sl)->start.img = mlx_xpm_file_to_image((*sl)->mlx_ptr, \
+	"Images/start.xpm", &(*sl)->img_width, &(*sl)->img_height);
+	while ((*sl)->map[++i])
 	{
 		j = -1;
-		while ((*sl)->mapping[i][++j])
+		while ((*sl)->map[i][++j])
 		{
-			if ((*sl)->mapping[i][j] == 'P')
+			if ((*sl)->map[i][j] == 'P')
 				mlx_put_image_to_window((*sl)->mlx_ptr, (*sl)->mlx_win, \
-				start.img, j * 32, i * 32);
-			else if ((*sl)->mapping[i][j] == 'E')
+				(*sl)->start.img, j * 32, i * 32);
+			else if ((*sl)->map[i][j] == 'E')
 				mlx_put_image_to_window((*sl)->mlx_ptr, (*sl)->mlx_win, \
-				exit.img, j * 32, i * 32);
+				(*sl)->exit.img, j * 32, i * 32);
 		}
 	}
+}
+
+void	init_move(t_long **sl)
+{
+	(*sl)->up.img = mlx_xpm_file_to_image((*sl)->mlx_ptr, "Images/up.xpm", \
+	&(*sl)->img_width, &(*sl)->img_height);
+	(*sl)->up2.img = mlx_xpm_file_to_image((*sl)->mlx_ptr, "Images/up2.xpm", \
+	&(*sl)->img_width, &(*sl)->img_height);
+	(*sl)->bottom.img = mlx_xpm_file_to_image((*sl)->mlx_ptr, \
+	"Images/bottom.xpm", &(*sl)->img_width, &(*sl)->img_height);
+	(*sl)->bottom2.img = mlx_xpm_file_to_image((*sl)->mlx_ptr, \
+	"Images/bottom2.xpm", &(*sl)->img_width, &(*sl)->img_height);
+	(*sl)->left.img = mlx_xpm_file_to_image((*sl)->mlx_ptr, \
+	"Images/left.xpm", &(*sl)->img_width, &(*sl)->img_height);
+	(*sl)->left2.img = mlx_xpm_file_to_image((*sl)->mlx_ptr, \
+	"Images/left2.xpm", &(*sl)->img_width, &(*sl)->img_height);
+	(*sl)->right.img = mlx_xpm_file_to_image((*sl)->mlx_ptr, \
+	"Images/right.xpm", &(*sl)->img_width, &(*sl)->img_height);
+	(*sl)->right2.img = mlx_xpm_file_to_image((*sl)->mlx_ptr, \
+	"Images/right2.xpm", &(*sl)->img_width, &(*sl)->img_height);
 }
