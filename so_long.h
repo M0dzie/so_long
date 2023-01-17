@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: thmeyer <marvin42@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:58:34 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/16 17:23:07 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/17 14:56:57 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_long
 	int				count_p;
 	int				count_e;
 	int				count_m;
+	int				current_c;
 	int				img_width;
 	int				img_height;
 
@@ -48,21 +49,20 @@ typedef struct s_long
 	t_img			collec;
 	t_img			background;
 
-	t_img			bottom;
-	t_img			bottom2;
 	t_img			up;
 	t_img			up2;
-	t_img			right;
-	t_img			right2;
 	t_img			left;
+	t_img			down;
+	t_img			right;
 	t_img			left2;
+	t_img			down2;
+	t_img			right2;
 
 	struct s_long	*map_cpy;
 	struct s_long	*next;
 }					t_long;
 
 int		check_keycode(int keycode, t_long *sl);
-int		exit_win(t_long *sl);
 int		map_size(char *argv);
 int		move_char(int keycode, t_long *sl);
 
@@ -74,8 +74,10 @@ t_long	*map_new(char **map);
 
 void	back_tracking(t_long *sl, int x, int y);
 void	back_tracking_error(t_long *sl);
+void	check_place(t_long *sl);
 void	check_walls(char **map, int size);
 void	display_error(int type);
+void	display_img(t_long *sl, int x, int y, t_img *img);
 void	elements_count(t_long *sl, int size);
 void	fill_background(t_long *sl);
 void	fill_map(char *argv, int size, t_long *sl);

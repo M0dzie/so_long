@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: thmeyer <marvin42@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 14:29:03 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/16 18:36:50 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/17 15:10:47 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,57 +15,64 @@
 int	check_keycode(int keycode, t_long *sl)
 {
 	if (keycode == 53)
-		exit_win(sl);
-	else
+	{
+		mlx_destroy_window(sl->mlx_ptr, sl->mlx_win);
+		exit(0);
+		//free_struct
+	}
+	if (keycode == 13 && sl->map[sl->y - 1][sl->x] != '1')
+		move_char(keycode, sl);
+	if (keycode == 2 && sl->map[sl->y][sl->x + 1] != '1')
+		move_char(keycode, sl);
+	if (keycode == 1 && sl->map[sl->y + 1][sl->x] != '1')
+		move_char(keycode, sl);
+	if (keycode == 0 && sl->map[sl->y][sl->x - 1] != '1')
 		move_char(keycode, sl);
 	return (0);
 }
 
-int	exit_win(t_long *sl)
+void	check_place(t_long *sl)
 {
-	mlx_destroy_window(sl->mlx_ptr, sl->mlx_win);
-	//free_struct
-	exit(0);
+	if (sl->map[sl->y][sl->x] == 'C')
+	{
+		sl->current_c++;
+		ft_printf("current_c : %d\n", sl->current_c);
+		sl->map[sl->y][sl->x] = '0';
+		sl->bush.img = mlx_xpm_file_to_image(sl->mlx_ptr, "Images/bush.xpm", \
+		&sl->img_width, &sl->img_height);
+	}
+	if (sl->map[sl->y][sl->x] == 'E')
+	{
+		if (sl->current_c == sl->count_c)
+		{
+			mlx_destroy_window(sl->mlx_ptr, sl->mlx_win);
+			exit(0);
+			// freeandexit(sl);
+		}
+	}
 }
 
-void	replace_lastcase(t_long *sl, int x, int y)
+void	display_img(t_long *sl, int x, int y, t_img *img)
 {
 	mlx_put_image_to_window(sl->mlx_ptr, sl->mlx_win, sl->background.img, \
-	x * 32, y * 32);
+	sl->x * 32, sl->y * 32);
 	mlx_put_image_to_window(sl->mlx_ptr, sl->mlx_win, sl->bush.img, \
-	x * 32, y * 32);
+	sl->x * 32, sl->y * 32);
+	mlx_put_image_to_window (sl->mlx_ptr, sl->mlx_win, img, x * 32, \
+	y * 32);
 }
 
 int	move_char(int keycode, t_long *sl)
 {
-	if (keycode == 13 && sl->map[sl->y - 1][sl->x] != '1')
-	{
-		replace_lastcase(sl, sl->y, sl->x);
-		sl->y -= 1;
-		mlx_put_image_to_window (sl->mlx_ptr, sl->mlx_win, \
-		sl->up.img, sl->x * 32, sl->y * 32);
-	}
-	if (keycode == 2 && sl->map[sl->y][sl->x + 1] != '1')
-	{		
-		replace_lastcase(sl, sl->y, sl->x);
-		sl->x += 1;
-		mlx_put_image_to_window (sl->mlx_ptr, sl->mlx_win, \
-		sl->right.img, sl->x * 32, sl->y * 32);
-	}
-	if (keycode == 1 && sl->map[sl->y + 1][sl->x] != '1')
-	{		
-		replace_lastcase(sl, sl->y, sl->x);
-		sl->y += 1;
-		mlx_put_image_to_window (sl->mlx_ptr, sl->mlx_win, \
-		sl->bottom.img, sl->x * 32, sl->y * 32);
-	}
-	if (keycode == 0 && sl->map[sl->y][sl->x - 1] != '1')
-	{		
-		replace_lastcase(sl, sl->y, sl->x);
-		sl->x -= 1;
-		mlx_put_image_to_window (sl->mlx_ptr, sl->mlx_win, \
-		sl->left.img, sl->x * 32, sl->y * 32);
-	}
+	if (keycode == 13)
+		display_img(sl, sl->x, sl->y--, sl->up.img);
+	if (keycode == 2)
+		display_img(sl, sl->x++, sl->y, sl->right.img);
+	if (keycode == 1)
+		display_img(sl, sl->x, sl->y++, sl->down.img);
+	if (keycode == 0)
+		display_img(sl, sl->x--, sl->y, sl->left.img);
 	ft_printf("%d\n", sl->count_m += 1);
+	check_place(sl);
 	return (0);
 }

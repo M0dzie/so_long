@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: thmeyer <marvin42@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 10:37:41 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/16 18:01:50 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/17 15:08:43 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ void	init_mlx(t_long *sl)
 	put_img_to_map(sl);
 	put_exit_and_start(sl);
 	init_move(sl);
-	sl->x = 1;
-	sl->y = 3;
 	mlx_hook(sl->mlx_win, 2, 1l << 0, check_keycode, sl);
 	mlx_loop(sl->mlx_ptr);
 }
@@ -82,7 +80,7 @@ void	put_exit_and_start(t_long *sl)
 	int		j;
 
 	i = -1;
-	sl->exit.img = mlx_xpm_file_to_image(sl->mlx_ptr, "Images/bush.xpm", \
+	sl->exit.img = mlx_xpm_file_to_image(sl->mlx_ptr, "Images/home.xpm", \
 	&sl->img_width, &sl->img_height);
 	sl->start.img = mlx_xpm_file_to_image(sl->mlx_ptr, \
 	"Images/start.xpm", &sl->img_width, &sl->img_height);
@@ -107,10 +105,10 @@ void	init_move(t_long *sl)
 	&sl->img_width, &sl->img_height);
 	sl->up2.img = mlx_xpm_file_to_image(sl->mlx_ptr, "Images/up2.xpm", \
 	&sl->img_width, &sl->img_height);
-	sl->bottom.img = mlx_xpm_file_to_image(sl->mlx_ptr, \
-	"Images/bottom.xpm", &sl->img_width, &sl->img_height);
-	sl->bottom2.img = mlx_xpm_file_to_image(sl->mlx_ptr, \
-	"Images/bottom2.xpm", &sl->img_width, &sl->img_height);
+	sl->down.img = mlx_xpm_file_to_image(sl->mlx_ptr, \
+	"Images/down.xpm", &sl->img_width, &sl->img_height);
+	sl->down2.img = mlx_xpm_file_to_image(sl->mlx_ptr, \
+	"Images/down2.xpm", &sl->img_width, &sl->img_height);
 	sl->left.img = mlx_xpm_file_to_image(sl->mlx_ptr, \
 	"Images/left.xpm", &sl->img_width, &sl->img_height);
 	sl->left2.img = mlx_xpm_file_to_image(sl->mlx_ptr, \

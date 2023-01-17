@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sl_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: thmeyer <marvin42@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:59:55 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/16 14:27:37 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/17 14:27:47 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ t_long	*map_new(char **map)
 		new->count_p = 0;
 		new->count_e = 0;
 		new->count_m = 0;
+		new->current_c = 0;
+		new->x = 0;
+		new->y = 0;
 		new->next = 0;
 	}
 	return (new);
