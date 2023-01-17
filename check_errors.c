@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin42@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 09:43:23 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/17 15:56:50 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/17 16:44:58 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,5 +116,5 @@ void	check_walls(char **map, int size)
 void	check_if_good(char c)
 {
 	if (c != '0' && c != '1' && c != 'P' && c != 'C' && c != 'E')
-		display_error(7);
+		display_error(10);
 }

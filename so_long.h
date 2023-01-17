@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thmeyer <marvin42@42.fr>                   +#+  +:+       +#+        */
+/*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:58:34 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/17 15:57:02 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/17 17:17:13 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	check_if_good(char c);
 void	check_place(t_long *sl);
 void	check_walls(char **map, int size);
 void	display_error(int type);
-void	display_img(t_long *sl, t_img *img);
+void	display_img(t_long *sl, int x, int y);
 void	elements_count(t_long *sl, int size);
 void	fill_background(t_long *sl);
 void	fill_map(char *argv, int size, t_long *sl);

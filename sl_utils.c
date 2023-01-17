@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin42@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:59:55 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/17 14:27:47 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/17 16:53:44 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,27 @@
 
 void	display_error(int type)
 {
+	ft_putendl_fd("Error", 2);
 	if (type == 1)
-		ft_putendl_fd("Error\nThe map must be rectangular.", 2);
+		ft_putendl_fd("The map must be rectangular.", 2);
 	if (type == 2)
-		ft_putendl_fd("Error\nThe map is not surrounded by walls.", 2);
+		ft_putendl_fd("The map is not surrounded by walls.", 2);
 	if (type == 3)
-		ft_putendl_fd("Error\nNo valid path in the map.", 2);
+		ft_putendl_fd("No valid path in the map.", 2);
 	if (type == 4)
-		ft_putendl_fd("Error\nThe map must contain 1 exit and 1 start.", 2);
+		ft_putendl_fd("The map must contain 1 exit and 1 start.", 2);
 	if (type == 5)
-		ft_putendl_fd("Error\nThe map must contain at least 1 collectible.", 2);
+		ft_putendl_fd("The map must contain at least 1 collectible.", 2);
 	if (type == 6)
-		ft_putendl_fd("Error\nThe program take only 1 map as parameter.", 2);
+		ft_putendl_fd("The program take only 1 map as parameter.", 2);
 	if (type == 7)
-		ft_putendl_fd("Error\nThe map is not valid.", 2);
+		ft_putendl_fd("The map is not valid.", 2);
 	if (type == 8)
-		ft_putendl_fd("Error\nNo such file or directory.", 2);
+		ft_putendl_fd("No such file or directory.", 2);
 	if (type == 9)
-		ft_putendl_fd("Error\nThe map is empty.", 2);
+		ft_putendl_fd("The map is empty.", 2);
+	if (type == 10)
+		ft_putendl_fd("The map must contain only 0, 1, C, P, or E char.", 2);
 	exit (0);
 }
 
