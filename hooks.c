@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin42@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 14:29:03 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/17 15:10:47 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/17 15:50:25 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,26 +52,48 @@ void	check_place(t_long *sl)
 	}
 }
 
-void	display_img(t_long *sl, int x, int y, t_img *img)
+void	display_img(t_long *sl, t_img *img)
+{
+	if (img == sl->up.img)
+	{
+		mlx_put_image_to_window (sl->mlx_ptr, sl->mlx_win, img, \
+		sl->x * 32, sl->y - 1 * 32);
+		sl->y -= 1;
+	}
+	if (img == sl->down.img)
+	{
+		mlx_put_image_to_window (sl->mlx_ptr, sl->mlx_win, img, \
+		sl->x * 32, sl->y + 1 * 32);
+		sl->y += 1;
+	}
+	if (img == sl->right.img)
+	{
+		mlx_put_image_to_window (sl->mlx_ptr, sl->mlx_win, img, \
+		sl->x + 1 * 32, sl->y * 32);
+		sl->x += 1;
+	}
+	if (img == sl->left.img)
+	{
+		mlx_put_image_to_window (sl->mlx_ptr, sl->mlx_win, img, \
+		sl->x - 1 * 32, sl->y * 32);
+		sl->x -= 1;
+	}
+}
+
+int	move_char(int keycode, t_long *sl)
 {
 	mlx_put_image_to_window(sl->mlx_ptr, sl->mlx_win, sl->background.img, \
 	sl->x * 32, sl->y * 32);
 	mlx_put_image_to_window(sl->mlx_ptr, sl->mlx_win, sl->bush.img, \
 	sl->x * 32, sl->y * 32);
-	mlx_put_image_to_window (sl->mlx_ptr, sl->mlx_win, img, x * 32, \
-	y * 32);
-}
-
-int	move_char(int keycode, t_long *sl)
-{
 	if (keycode == 13)
-		display_img(sl, sl->x, sl->y--, sl->up.img);
+		display_img(sl, sl->up.img);
 	if (keycode == 2)
-		display_img(sl, sl->x++, sl->y, sl->right.img);
+		display_img(sl, sl->right.img);
 	if (keycode == 1)
-		display_img(sl, sl->x, sl->y++, sl->down.img);
+		display_img(sl, sl->down.img);
 	if (keycode == 0)
-		display_img(sl, sl->x--, sl->y, sl->left.img);
+		display_img(sl, sl->left.img);
 	ft_printf("%d\n", sl->count_m += 1);
 	check_place(sl);
 	return (0);

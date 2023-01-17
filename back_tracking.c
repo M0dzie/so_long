@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   back_tracking.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: thmeyer <marvin42@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 12:02:30 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/16 17:19:09 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/17 15:57:28 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	back_tracking(t_long *sl, int x, int y)
 
 void	move_in_map(t_long *sl, int x, int y)
 {
+	check_if_good(sl->map[y][x]);
 	if (sl->map_cpy->map[y][x] == 'C')
 		sl->map_cpy->count_c++;
 	if (sl->map_cpy->map[y][x] == 'E')
