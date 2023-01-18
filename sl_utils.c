@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:59:55 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/18 10:29:05 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/18 11:47:52 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	display_error(int type)
 		ft_putendl_fd("The map is empty.", 2);
 	if (type == 10)
 		ft_putendl_fd("The map must contain only 0, 1, C, P, or E char.", 2);
-	// free_struct
 	exit (0);
 }
 
@@ -56,17 +55,14 @@ t_long	*map_new(char **map)
 	new = malloc(sizeof(t_long));
 	if (!new)
 		exit(0);
-	if (new)
-	{
-		new->map = map;
-		new->count_c = 0;
-		new->count_p = 0;
-		new->count_e = 0;
-		new->count_m = 0;
-		new->current_c = 0;
-		new->x = 0;
-		new->y = 0;
-		new->status = 0;
-	}
+	new->map = map;
+	new->count_c = 0;
+	new->count_p = 0;
+	new->count_e = 0;
+	new->count_m = 0;
+	new->current_c = 0;
+	new->x = 0;
+	new->y = 0;
+	new->status = 0;
 	return (new);
 }

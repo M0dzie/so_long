@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thmeyer <marvin42@42.fr>                   +#+  +:+       +#+        */
+/*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 10:37:41 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/17 15:08:43 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/18 12:22:52 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	fill_background(t_long *sl)
 	i = -1;
 	sl->background.img = mlx_xpm_file_to_image(sl->mlx_ptr, \
 	"Images/background.xpm", &sl->img_width, &sl->img_height);
-	sl->tree.img = mlx_xpm_file_to_image(sl->mlx_ptr, "Images/tree2.xpm", \
+	sl->tree.img = mlx_xpm_file_to_image(sl->mlx_ptr, "Images/tree.xpm", \
 	&sl->img_width, &sl->img_height);
 	while (sl->map[++i])
 	{

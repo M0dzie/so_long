@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:58:34 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/18 10:34:52 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/18 12:16:16 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,6 @@
 typedef struct s_img
 {
 	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
 }			t_img;
 
 typedef struct s_long
@@ -83,6 +79,7 @@ void	display_error(int type);
 void	display_img_lastpos(t_long *sl, int x, int y);
 void	elements_count(t_long *sl, int size);
 void	fill_background(t_long *sl);
+void	free_struct(t_long *sl);
 void	init_mlx(t_long *sl);
 void	init_move(t_long *sl);
 void	move_in_map(t_long *sl, int x, int y);
