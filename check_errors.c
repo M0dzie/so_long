@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 09:43:23 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/18 11:29:29 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/18 17:14:23 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ int	map_size(char *argv)
 	while (line)
 	{
 		if (len != sl_len(line))
-			display_error(1);
+			return (free(line), display_error(1), 0);
 		line = get_next_line(fd);
 		size++;
 	}
 	if (size < 3)
-		display_error(3);
+		return (free(line), display_error(3), 0);
 	return (close(fd), free(line), size);
 }
 
@@ -81,9 +81,9 @@ void	elements_count(t_long *sl, int size)
 		}
 	}
 	if (sl->count_p != 1 || sl->count_e != 1)
-		display_error(4);
+		return (free_struct(sl), display_error(4));
 	if (sl->count_c < 1)
-		display_error(5);
+		return (free_struct(sl), display_error(5));
 }
 
 void	check_walls(char **map, int size)
@@ -97,7 +97,7 @@ void	check_walls(char **map, int size)
 		while (map[size - 1][++i])
 		{
 			if (map[size - 1][i] != '1')
-				display_error(2);
+				return (free_tab(map), display_error(2));
 		}
 		size--;
 	}
@@ -106,15 +106,15 @@ void	check_walls(char **map, int size)
 	{
 		len = ft_strlen(map[size]);
 		if (map[size - 1][0] != '1' || map[size - 1][len - 1] != '1')
-			display_error(2);
+			return (free_tab(map), display_error(2));
 		size--;
 	}
 	if (size == 1)
 		check_walls(map, size);
 }
 
-void	check_if_good(char c)
+void	check_if_good(t_long *sl, char c)
 {
 	if (c != '0' && c != '1' && c != 'P' && c != 'C' && c != 'E')
-		display_error(10);
+		return (free_struct(sl), display_error(10));
 }

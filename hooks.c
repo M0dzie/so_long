@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 14:29:03 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/18 12:41:59 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/18 17:03:08 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	check_keycode(int keycode, t_long *sl)
 {
 	if (keycode == 53)
 	{
-		mlx_destroy_window(sl->mlx_ptr, sl->mlx_win);
+		free_struct(sl);
 		exit(0);
 	}
 	if (keycode == 13 && sl->map[sl->y - 1][sl->x] != '1')
@@ -37,39 +37,38 @@ void	check_place(t_long *sl)
 	{
 		sl->current_c++;
 		sl->map[sl->y][sl->x] = '0';
-		sl->bush.img = mlx_xpm_file_to_image(sl->mlx_ptr, "Images/bush.xpm", \
-		&sl->img_width, &sl->img_height);
 	}
 	if (sl->map[sl->y][sl->x] == 'E')
 	{
 		if (sl->current_c == sl->count_c)
 		{
-			mlx_destroy_window(sl->mlx_ptr, sl->mlx_win);
 			ft_printf("\033[1;32mWell done mate! You finished the game!\033[0m\n");
+			// free_struct(sl);
+			mlx_destroy_window(sl->mlx_ptr, sl->mlx_win);
 			exit(0);
 		}
 	}
 }
 
-void	display_img_lastpos(t_long *sl, int x, int y)
+void	display_img_lastpos(t_long *sl)
 {
-	if (sl->map[y][x] == 'E')
+	if (sl->map[sl->y][sl->x] == 'E')
 	{
 		mlx_put_image_to_window(sl->mlx_ptr, sl->mlx_win, sl->background.img, \
-		x * 32, y * 32);
+		sl->x * 32, sl->y * 32);
 		mlx_put_image_to_window(sl->mlx_ptr, sl->mlx_win, sl->exit.img, \
-		x * 32, y * 32);
+		sl->x * 32, sl->y * 32);
 		return ;
 	}
 	mlx_put_image_to_window(sl->mlx_ptr, sl->mlx_win, sl->background.img, \
-	x * 32, y * 32);
+	sl->x * 32, sl->y * 32);
 	mlx_put_image_to_window(sl->mlx_ptr, sl->mlx_win, sl->bush.img, \
-	x * 32, y * 32);
+	sl->x * 32, sl->y * 32);
 }
 
 int	move_y(int keycode, t_long *sl)
 {
-	display_img_lastpos(sl, sl->x, sl->y);
+	display_img_lastpos(sl);
 	if (keycode == 13)
 	{
 		if (sl->status == 0)
@@ -97,7 +96,7 @@ int	move_y(int keycode, t_long *sl)
 
 int	move_x(int keycode, t_long *sl)
 {
-	display_img_lastpos(sl, sl->x, sl->y);
+	display_img_lastpos(sl);
 	if (keycode == 2)
 	{
 		if (sl->status == 0)

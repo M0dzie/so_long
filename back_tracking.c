@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 12:02:30 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/18 09:29:06 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/18 17:09:30 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	back_tracking(t_long *sl, int x, int y)
 
 void	move_in_map(t_long *sl, int x, int y)
 {
-	check_if_good(sl->map[y][x]);
+	check_if_good(sl, sl->map[y][x]);
 	if (sl->map_cpy->map[y][x] == 'C')
 		sl->map_cpy->count_c++;
 	if (sl->map_cpy->map[y][x] == 'E')
@@ -41,5 +41,5 @@ void	back_tracking_error(t_long *sl)
 {
 	if ((sl->count_c != sl->map_cpy->count_c) || (sl->count_e != \
 	sl->map_cpy->count_e))
-		display_error(3);
+		return (free_struct(sl), display_error(3));
 }
