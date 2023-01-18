@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thmeyer <marvin42@42.fr>                   +#+  +:+       +#+        */
+/*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 18:39:21 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/17 09:40:42 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/18 09:06:24 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	**copy_map(char **map, int size)
 	return (map_cpy);
 }
 
-void	fill_map(char *argv, int size, t_long *sl)
+t_long	fill_map(char *argv, int size, t_long *sl)
 {
 	int		i;
 	int		fd;
@@ -64,4 +64,5 @@ void	fill_map(char *argv, int size, t_long *sl)
 	back_tracking(sl, sl->x, sl->y);
 	back_tracking_error(sl);
 	close (fd);
+	return ((*sl));
 }

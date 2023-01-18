@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:58:34 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/17 17:17:13 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/18 09:06:12 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ typedef struct s_long
 	t_img			right2;
 
 	struct s_long	*map_cpy;
-	struct s_long	*next;
 }					t_long;
 
 int		check_keycode(int keycode, t_long *sl);
@@ -81,7 +80,7 @@ void	display_error(int type);
 void	display_img(t_long *sl, int x, int y);
 void	elements_count(t_long *sl, int size);
 void	fill_background(t_long *sl);
-void	fill_map(char *argv, int size, t_long *sl);
+t_long	fill_map(char *argv, int size, t_long *sl);
 void	init_mlx(t_long *sl);
 void	init_move(t_long *sl);
 void	move_in_map(t_long *sl, int x, int y);
