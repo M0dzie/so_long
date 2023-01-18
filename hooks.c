@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 14:29:03 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/18 08:51:18 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/18 09:51:44 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	check_place(t_long *sl)
 	}
 }
 
-void	display_img(t_long *sl, int x, int y)
+void	display_img_lastpos(t_long *sl, int x, int y)
 {
 	if (sl->map[y][x] == 'E')
 	{	
@@ -69,34 +69,19 @@ void	display_img(t_long *sl, int x, int y)
 
 int	move_char(int keycode, t_long *sl)
 {
-	if (keycode == 13 && sl->map[sl->y - 1][sl->x] != '1')
-	{
-		display_img(sl, sl->x, sl->y);
-		sl->y -= 1;
+	display_img_lastpos(sl, sl->x, sl->y);
+	if (keycode == 13)
 		mlx_put_image_to_window (sl->mlx_ptr, sl->mlx_win, \
-		sl->up.img, sl->x * 32, sl->y * 32);
-	}
-	if (keycode == 2 && sl->map[sl->y][sl->x + 1] != '1')
-	{		
-		display_img(sl, sl->x, sl->y);
-		sl->x += 1;
+		sl->up.img, sl->x * 32, (sl->y -= 1) * 32);
+	if (keycode == 2)
 		mlx_put_image_to_window (sl->mlx_ptr, sl->mlx_win, \
-		sl->right.img, sl->x * 32, sl->y * 32);
-	}
-	if (keycode == 1 && sl->map[sl->y + 1][sl->x] != '1')
-	{		
-		display_img(sl, sl->x, sl->y);
-		sl->y += 1;
+		sl->right.img, (sl->x += 1) * 32, sl->y * 32);
+	if (keycode == 1)
 		mlx_put_image_to_window (sl->mlx_ptr, sl->mlx_win, \
-		sl->down.img, sl->x * 32, sl->y * 32);
-	}
-	if (keycode == 0 && sl->map[sl->y][sl->x - 1] != '1')
-	{		
-		display_img(sl, sl->x, sl->y);
-		sl->x -= 1;
+		sl->down.img, sl->x * 32, (sl->y += 1) * 32);
+	if (keycode == 0)
 		mlx_put_image_to_window (sl->mlx_ptr, sl->mlx_win, \
-		sl->left.img, sl->x * 32, sl->y * 32);
-	}
+		sl->left.img, (sl->x -= 1) * 32, sl->y * 32);
 	ft_printf("%d\n", sl->count_m += 1);
 	check_place(sl);
 	return (0);

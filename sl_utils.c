@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:59:55 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/18 08:49:03 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/18 09:40:08 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	display_error(int type)
 		ft_putendl_fd("The map is empty.", 2);
 	if (type == 10)
 		ft_putendl_fd("The map must contain only 0, 1, C, P, or E char.", 2);
+	// free_struct
 	exit (0);
 }
 
