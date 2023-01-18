@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:58:34 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/18 09:49:22 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/18 10:34:52 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_long
 	int				y;
 	int				width;
 	int				length;
+	int				status;
 	int				count_c;
 	int				count_p;
 	int				count_e;
@@ -63,7 +64,8 @@ typedef struct s_long
 
 int		check_keycode(int keycode, t_long *sl);
 int		map_size(char *argv);
-int		move_char(int keycode, t_long *sl);
+int		move_y(int keycode, t_long *sl);
+int		move_x(int keycode, t_long *sl);
 
 char	**copy_map(char **map, int size);
 
