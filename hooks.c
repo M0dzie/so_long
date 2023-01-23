@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 14:29:03 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/23 15:42:32 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/23 18:10:33 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ int	check_keycode(int keycode, t_long *sl)
 		move_x(keycode, sl);
 	check_place(sl);
 	count = ft_itoa(sl->count_m);
-	mlx_string_put(sl->mlx_ptr, sl->mlx_win, 8, 20, \
-	0xFFFFFF, count);
+	mlx_string_put(sl->mlx_ptr, sl->mlx_win, 8, 20, 0xFFFFFF, count);
 	return (free(count), 0);
 }
 
