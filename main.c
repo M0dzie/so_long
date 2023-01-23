@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:04:45 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/18 16:38:11 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/23 11:23:09 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,6 @@ void	print_map(char **map, char *type)
 		i++;
 	}
 	ft_printf("\n");
-}
-
-void	free_struct(t_long *sl)
-{
-	if (sl->mlx_ptr != NULL)
-		mlx_destroy_window(sl->mlx_ptr, sl->mlx_win);
-	if (sl->map)
-		free_tab(sl->map);
-	if (sl->map_cpy->map)
-		free_tab(sl->map_cpy->map);
 }
 
 int	main(int argc, char **argv)

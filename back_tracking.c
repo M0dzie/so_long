@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 12:02:30 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/18 17:09:30 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/23 11:22:52 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,5 @@ void	back_tracking_error(t_long *sl)
 {
 	if ((sl->count_c != sl->map_cpy->count_c) || (sl->count_e != \
 	sl->map_cpy->count_e))
-		return (free_struct(sl), display_error(3));
+		return (free_tab(sl->map_cpy->map), display_error(3));
 }

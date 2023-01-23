@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 09:43:23 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/18 17:14:23 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/23 11:25:56 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,15 @@ int	map_size(char *argv)
 	len = sl_len(line);
 	while (line)
 	{
+		free(line);
 		if (len != sl_len(line))
-			return (free(line), display_error(1), 0);
+			display_error(1);
 		line = get_next_line(fd);
 		size++;
 	}
 	if (size < 3)
-		return (free(line), display_error(3), 0);
-	return (close(fd), free(line), size);
+		return (display_error(3), 0);
+	return (close(fd), size);
 }
 
 void	valid_map(char *argv)
@@ -81,9 +82,9 @@ void	elements_count(t_long *sl, int size)
 		}
 	}
 	if (sl->count_p != 1 || sl->count_e != 1)
-		return (free_struct(sl), display_error(4));
+		return (free_tab(sl->map), display_error(4));
 	if (sl->count_c < 1)
-		return (free_struct(sl), display_error(5));
+		return (free_tab(sl->map), display_error(5));
 }
 
 void	check_walls(char **map, int size)
@@ -116,5 +117,5 @@ void	check_walls(char **map, int size)
 void	check_if_good(t_long *sl, char c)
 {
 	if (c != '0' && c != '1' && c != 'P' && c != 'C' && c != 'E')
-		return (free_struct(sl), display_error(10));
+		return (free_tab(sl->map), display_error(10));
 }

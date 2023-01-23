@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 14:29:03 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/18 17:03:08 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/23 11:27:13 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 int	check_keycode(int keycode, t_long *sl)
 {
 	if (keycode == 53)
-	{
-		free_struct(sl);
 		exit(0);
-	}
 	if (keycode == 13 && sl->map[sl->y - 1][sl->x] != '1')
 		move_y(keycode, sl);
 	if (keycode == 2 && sl->map[sl->y][sl->x + 1] != '1')
@@ -43,7 +40,6 @@ void	check_place(t_long *sl)
 		if (sl->current_c == sl->count_c)
 		{
 			ft_printf("\033[1;32mWell done mate! You finished the game!\033[0m\n");
-			// free_struct(sl);
 			mlx_destroy_window(sl->mlx_ptr, sl->mlx_win);
 			exit(0);
 		}
