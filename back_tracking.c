@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 12:02:30 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/23 11:22:52 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/23 15:28:37 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	back_tracking(t_long *sl, int x, int y)
 {
-	// ft_printf("\nx : %d et y : %d\n", x, y);
-	// print_map(sl->map_cpy->map, "Map Copy");
 	move_in_map(sl, x, y);
 	if (sl->map_cpy->map[y - 1][x] != '1')
 		back_tracking(sl, x, y - 1);

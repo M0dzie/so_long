@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:58:34 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/23 11:38:37 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/23 15:28:32 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,5 @@ void	move_in_map(t_long *sl, int x, int y);
 void	put_exit_and_start(t_long *sl);
 void	put_img_to_map(t_long *sl);
 void	valid_map(char *argv);
-
-void	print_map(char **map, char *type);
 
 #endif

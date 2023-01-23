@@ -6,25 +6,11 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:04:45 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/23 11:45:25 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/23 15:28:29 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	print_map(char **map, char *type)
-{
-	int	i;
-
-	i = 0;
-	ft_printf("%s\n", type);
-	while (map[i])
-	{
-		ft_printf("%s\n", map[i]);
-		i++;
-	}
-	ft_printf("\n");
-}
 
 void	free_struct(t_long *sl)
 {
