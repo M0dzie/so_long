@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:58:34 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/23 11:23:14 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/23 11:38:37 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	display_error(int type);
 void	display_img_lastpos(t_long *sl);
 void	elements_count(t_long *sl, int size);
 void	fill_background(t_long *sl);
+void	free_struct(t_long *sl);
 void	init_mlx(t_long *sl);
 void	init_move(t_long *sl);
 void	move_in_map(t_long *sl, int x, int y);

@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 14:29:03 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/23 11:27:13 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/23 13:42:56 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	check_keycode(int keycode, t_long *sl)
 {
 	if (keycode == 53)
-		exit(0);
+		free_struct(sl);
 	if (keycode == 13 && sl->map[sl->y - 1][sl->x] != '1')
 		move_y(keycode, sl);
 	if (keycode == 2 && sl->map[sl->y][sl->x + 1] != '1')
@@ -40,8 +40,7 @@ void	check_place(t_long *sl)
 		if (sl->current_c == sl->count_c)
 		{
 			ft_printf("\033[1;32mWell done mate! You finished the game!\033[0m\n");
-			mlx_destroy_window(sl->mlx_ptr, sl->mlx_win);
-			exit(0);
+			free_struct(sl);
 		}
 	}
 }
@@ -60,6 +59,10 @@ void	display_img_lastpos(t_long *sl)
 	sl->x * 32, sl->y * 32);
 	mlx_put_image_to_window(sl->mlx_ptr, sl->mlx_win, sl->bush.img, \
 	sl->x * 32, sl->y * 32);
+	mlx_put_image_to_window(sl->mlx_ptr, sl->mlx_win, sl->background.img, \
+	(sl->length - 1) * 32, 1);
+	mlx_put_image_to_window(sl->mlx_ptr, sl->mlx_win, sl->tree.img, \
+	(sl->length - 1) * 32, 1);
 }
 
 int	move_y(int keycode, t_long *sl)
@@ -87,7 +90,8 @@ int	move_y(int keycode, t_long *sl)
 		sl->status = 1;
 	else if (sl->status == 1)
 		sl->status = 0;
-	return (ft_printf("%d\n", sl->count_m += 1), 0);
+	return (ft_printf("%d\n", sl->count_m += 1), mlx_string_put(sl->mlx_ptr, \
+	sl->mlx_win, (sl->length - 1) * 32, 32, 0x000000, ft_itoa(sl->count_m)), 0);
 }
 
 int	move_x(int keycode, t_long *sl)
@@ -115,5 +119,6 @@ int	move_x(int keycode, t_long *sl)
 		sl->status = 1;
 	else if (sl->status == 1)
 		sl->status = 0;
-	return (ft_printf("%d\n", sl->count_m += 1), 0);
+	return (ft_printf("%d\n", sl->count_m += 1), mlx_string_put(sl->mlx_ptr, \
+	sl->mlx_win, (sl->length - 1) * 32, 32, 0x000000, ft_itoa(sl->count_m)), 0);
 }

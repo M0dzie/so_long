@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:04:45 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/23 11:23:09 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/23 11:45:25 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,27 @@ void	print_map(char **map, char *type)
 		i++;
 	}
 	ft_printf("\n");
+}
+
+void	free_struct(t_long *sl)
+{
+	free_tab(sl->map);
+	mlx_destroy_window(sl->mlx_ptr, sl->mlx_win);
+	mlx_destroy_image(sl->mlx_ptr, sl->background.img);
+	mlx_destroy_image(sl->mlx_ptr, sl->bush.img);
+	mlx_destroy_image(sl->mlx_ptr, sl->collec.img);
+	mlx_destroy_image(sl->mlx_ptr, sl->down2.img);
+	mlx_destroy_image(sl->mlx_ptr, sl->down.img);
+	mlx_destroy_image(sl->mlx_ptr, sl->up.img);
+	mlx_destroy_image(sl->mlx_ptr, sl->up2.img);
+	mlx_destroy_image(sl->mlx_ptr, sl->right.img);
+	mlx_destroy_image(sl->mlx_ptr, sl->right2.img);
+	mlx_destroy_image(sl->mlx_ptr, sl->left.img);
+	mlx_destroy_image(sl->mlx_ptr, sl->left2.img);
+	mlx_destroy_image(sl->mlx_ptr, sl->start.img);
+	mlx_destroy_image(sl->mlx_ptr, sl->exit.img);
+	mlx_destroy_image(sl->mlx_ptr, sl->tree.img);
+	exit(0);
 }
 
 int	main(int argc, char **argv)
