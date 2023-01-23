@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 10:37:41 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/23 14:22:38 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/23 17:25:15 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	init_mlx(t_long *sl)
 	put_exit_and_start(sl);
 	init_move(sl);
 	mlx_hook(sl->mlx_win, 2, 1l << 0, check_keycode, sl);
+	mlx_hook(sl->mlx_win, 17, 1l << 0, free_struct, sl);
 	mlx_loop(sl->mlx_ptr);
 }
 

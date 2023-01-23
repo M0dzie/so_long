@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:58:34 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/23 15:28:32 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/23 17:39:10 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ typedef struct s_long
 {
 	void			*mlx_ptr;
 	void			*mlx_win;
+
 	char			**map;
+
 	int				x;
 	int				y;
 	int				width;
@@ -58,12 +60,13 @@ typedef struct s_long
 	struct s_long	*map_cpy;
 }					t_long;
 
+char	**copy_map(char **map, int size);
+
 int		check_keycode(int keycode, t_long *sl);
+int		free_struct(t_long *sl);
 int		map_size(char *argv);
 int		move_y(int keycode, t_long *sl);
 int		move_x(int keycode, t_long *sl);
-
-char	**copy_map(char **map, int size);
 
 size_t	sl_len(char *str);
 
@@ -79,7 +82,6 @@ void	display_error(int type);
 void	display_img_lastpos(t_long *sl);
 void	elements_count(t_long *sl, int size);
 void	fill_background(t_long *sl);
-void	free_struct(t_long *sl);
 void	init_mlx(t_long *sl);
 void	init_move(t_long *sl);
 void	move_in_map(t_long *sl, int x, int y);
