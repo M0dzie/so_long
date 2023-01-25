@@ -15,13 +15,13 @@ printf "${YELLOW}Test nº$i :	no arguments\n./so_long\n\n${NOCOLOR}"; ((i=i+1));
 
 printf "${BLUE}\n\n\n#####		TEST Extensions		#####${NOCOLOR}"
 i=1
-printf "${YELLOW}\n\nTest nº$i : no extension\n./so_long map\n\n${NOCOLOR}"; ((i=i+1)); $DIR_PROG map; sleep 1
-printf "${YELLOW}\n\nTest nº$i : uncomplete\n./so_long map.\n\n${NOCOLOR}"; ((i=i+1)); $DIR_PROG map.; sleep 1
-printf "${YELLOW}\n\nTest nº$i : uncomplete\n./so_long map.b\n\n${NOCOLOR}"; ((i=i+1)); $DIR_PROG map.b; sleep 1
-printf "${YELLOW}\n\nTest nº$i : uncomplete\n./so_long map.be\n\n${NOCOLOR}"; ((i=i+1)); $DIR_PROG map.be; sleep 1
-printf "${YELLOW}\n\nTest nº$i : too long\n./so_long map.berr\n\n${NOCOLOR}"; ((i=i+1)); $DIR_PROG map.berr; sleep 1
-printf "${YELLOW}\n\nTest nº$i : too short\n./so_long .ber\n\n${NOCOLOR}"; ((i=i+1)); $DIR_PROG .ber; sleep 1
-printf "${YELLOW}\n\nTest nº$i : with folder\n./so_long /.ber\n\n${NOCOLOR}"; ((i=i+1)); $DIR_PROG /.ber; sleep 1
+printf "${YELLOW}\n\nTest nº$i : 	no extension\n./so_long map\n\n${NOCOLOR}"; ((i=i+1)); $DIR_PROG map; sleep 1
+printf "${YELLOW}\n\nTest nº$i : 	uncomplete\n./so_long map.\n\n${NOCOLOR}"; ((i=i+1)); $DIR_PROG map.; sleep 1
+printf "${YELLOW}\n\nTest nº$i : 	uncomplete\n./so_long map.b\n\n${NOCOLOR}"; ((i=i+1)); $DIR_PROG map.b; sleep 1
+printf "${YELLOW}\n\nTest nº$i : 	uncomplete\n./so_long map.be\n\n${NOCOLOR}"; ((i=i+1)); $DIR_PROG map.be; sleep 1
+printf "${YELLOW}\n\nTest nº$i : 	too long\n./so_long map.berr\n\n${NOCOLOR}"; ((i=i+1)); $DIR_PROG map.berr; sleep 1
+printf "${YELLOW}\n\nTest nº$i : 	too short\n./so_long .ber\n\n${NOCOLOR}"; ((i=i+1)); $DIR_PROG .ber; sleep 1
+printf "${YELLOW}\n\nTest nº$i : 	with folder\n./so_long /.ber\n\n${NOCOLOR}"; ((i=i+1)); $DIR_PROG /.ber; sleep 1
 
 printf "${BLUE}\n\n\n#####		TEST Map		#####${NOCOLOR}"
 i=1
@@ -48,13 +48,13 @@ printf "Test leaks nº$i :	no arguments\n./so_long\n${NOCOLOR}"; ((i=i+1)); leak
 
 printf "${BLUE}\n\n\n#####		TEST Extensions		#####${NOCOLOR}"
 i=1
-printf "${YELLOW}\n\nTest nº$i : no extension\n./so_long map\n\n${NOCOLOR}"; ((i=i+1)); leaks --atExit -- $DIR_PROG map | grep "leaks for"
-printf "${YELLOW}\n\nTest nº$i : uncomplete\n./so_long map.\n\n${NOCOLOR}"; ((i=i+1)); leaks --atExit -- $DIR_PROG map. | grep "leaks for"
-printf "${YELLOW}\n\nTest nº$i : uncomplete\n./so_long map.b\n\n${NOCOLOR}"; ((i=i+1)); leaks --atExit -- $DIR_PROG map.b | grep "leaks for"
-printf "${YELLOW}\n\nTest nº$i : uncomplete\n./so_long map.be\n\n${NOCOLOR}"; ((i=i+1)); leaks --atExit -- $DIR_PROG map.be | grep "leaks for"
-printf "${YELLOW}\n\nTest nº$i : too long\n./so_long map.berr\n\n${NOCOLOR}"; ((i=i+1)); leaks --atExit -- $DIR_PROG map.berr | grep "leaks for"
-printf "${YELLOW}\n\nTest nº$i : too short\n./so_long .ber\n\n${NOCOLOR}"; ((i=i+1)); leaks --atExit -- $DIR_PROG .ber | grep "leaks for"
-printf "${YELLOW}\n\nTest nº$i : with folder\n./so_long /.ber\n\n${NOCOLOR}"; ((i=i+1)); leaks --atExit -- $DIR_PROG /.ber | grep "leaks for"
+printf "${YELLOW}\n\nTest nº$i : 	no extension\n./so_long map\n\n${NOCOLOR}"; ((i=i+1)); leaks --atExit -- $DIR_PROG map | grep "leaks for"
+printf "${YELLOW}\n\nTest nº$i : 	uncomplete\n./so_long map.\n\n${NOCOLOR}"; ((i=i+1)); leaks --atExit -- $DIR_PROG map. | grep "leaks for"
+printf "${YELLOW}\n\nTest nº$i : 	uncomplete\n./so_long map.b\n\n${NOCOLOR}"; ((i=i+1)); leaks --atExit -- $DIR_PROG map.b | grep "leaks for"
+printf "${YELLOW}\n\nTest nº$i : 	uncomplete\n./so_long map.be\n\n${NOCOLOR}"; ((i=i+1)); leaks --atExit -- $DIR_PROG map.be | grep "leaks for"
+printf "${YELLOW}\n\nTest nº$i : 	too long\n./so_long map.berr\n\n${NOCOLOR}"; ((i=i+1)); leaks --atExit -- $DIR_PROG map.berr | grep "leaks for"
+printf "${YELLOW}\n\nTest nº$i : 	too short\n./so_long .ber\n\n${NOCOLOR}"; ((i=i+1)); leaks --atExit -- $DIR_PROG .ber | grep "leaks for"
+printf "${YELLOW}\n\nTest nº$i : 	with folder\n./so_long /.ber\n\n${NOCOLOR}"; ((i=i+1)); leaks --atExit -- $DIR_PROG /.ber | grep "leaks for"
 
 printf "${BLUE}\n\n\n#####		TEST Map		#####${NOCOLOR}"
 i=1
