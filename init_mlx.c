@@ -6,7 +6,7 @@
 /*   By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 10:37:41 by thmeyer           #+#    #+#             */
-/*   Updated: 2023/01/23 17:25:15 by thmeyer          ###   ########.fr       */
+/*   Updated: 2023/01/27 10:48:03 by thmeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	init_move(t_long *sl)
 	sl->up2.img = mlx_xpm_file_to_image(sl->mlx_ptr, "Images/up2.xpm", \
 	&sl->img_width, &sl->img_height);
 	sl->down.img = mlx_xpm_file_to_image(sl->mlx_ptr, \
-	"Images/down.xpm", &sl->img_width, &sl->img_height);
+"Images/down.xpm", &sl->img_width, &sl->img_height);
 	sl->down2.img = mlx_xpm_file_to_image(sl->mlx_ptr, \
 	"Images/down2.xpm", &sl->img_width, &sl->img_height);
 	sl->left.img = mlx_xpm_file_to_image(sl->mlx_ptr, \
