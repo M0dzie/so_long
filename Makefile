@@ -3,22 +3,23 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: thmeyer <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: thmeyer <thmeyer@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 10:17:28 by thmeyer           #+#    #+#              #
-#    Updated: 2023/01/23 18:05:48 by thmeyer          ###   ########.fr        #
+#    Updated: 2023/02/06 15:26:13 by thmeyer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NOCOLOR= \033[0m
+NOCOLOR = \033[0m
 BGREEN = \033[1;32m
+
+UNAME = $(shell uname)
 
 NAME = so_long
 HEADER = so_long.h
 
 CC = cc
 C_FLAGS = -Wall -Wextra -Werror
-MLX_FLAGS = -framework OpenGL -framework AppKit
 
 RM = rm -rf
 
@@ -29,10 +30,18 @@ OBJS = $(SRCS:%.c=$(DIR_OBJS)%.o)
 
 DIR_OBJS = Objs/
 DIR_LIBFT = Libft/
-DIR_MLX = Minilibx/
+
+ifeq ($(UNAME), Linux)
+	DIR_MLX = Minilibx_L/
+	MLX_FLAGS = -lm -lz -lXext -lX11
+	LIBMLX_A = $(DIR_MLX)libmlx.a
+else
+	DIR_MLX = Minilibx/
+	LIBMLX_A = $(DIR_MLX)libmlx.a
+	MLX_FLAGS = -framework OpenGL -framework AppKit
+endif
 
 LIBFT_A = $(DIR_LIBFT)libft.a
-LIBMLX_A = $(DIR_MLX)libmlx.a
 
 all: directory rsc $(NAME)
 
